@@ -5,7 +5,7 @@ import { Services } from "@/components/landing/services";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f6f9fc] dark:bg-[#0f1c2e]">
+    <div className="min-h-screen bg-white dark:bg-[#0a2540]">
       <Navigation />
       <main>
         <Hero />

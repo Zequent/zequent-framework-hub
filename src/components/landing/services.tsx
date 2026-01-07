@@ -31,7 +31,7 @@ const features = [
 
 export function Services() {
   return (
-    <section id="features" className="py-32 bg-white dark:bg-[#1a2738]">
+    <section id="features" className="py-32 bg-[#f6f9fc] dark:bg-[#0a2540]">
       <Container>
         <div className="max-w-[1080px] mx-auto space-y-20">
           {features.map((feature, index) => (

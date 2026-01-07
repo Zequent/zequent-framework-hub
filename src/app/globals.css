@@ -5,12 +5,25 @@
   --font-mono: var(--font-geist-mono);
 }
 
-:root {
-  --background: 246 249 252;
-  --foreground: 10 37 64;
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: 255 255 255;
+    --foreground: 10 37 64;
+    --color-primary: #0173e7;
+    --color-primary-dark: #0152b8;
+    --color-accent: #3b9eff;
+  }
 }
 
-.dark {
-  --background: 15 28 46;
-  --foreground: 255 255 255;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 10 37 64;
+    --foreground: 255 255 255;
+    --color-primary: #3b9eff;
+    --color-primary-dark: #0173e7;
+    --color-accent: #3b9eff;
+  }
 }
+
+@variant dark (&:where(.dark, .dark *));
+@variant light (&:where(.light, .light *));

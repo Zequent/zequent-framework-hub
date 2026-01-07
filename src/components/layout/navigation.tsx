@@ -9,10 +9,10 @@ import { useState } from "react";
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#0f1c2e]/80 backdrop-blur-md border-b border-[#e3e8ef] dark:border-[#1a2f42]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#0a2540]/80 backdrop-blur-md border-b border-[#e3e8ef] dark:border-[#1a2f42]">
       <Container>
         <nav className="flex items-center justify-between py-4">
           <div className="flex items-center">
@@ -43,31 +43,35 @@ export function Navigation() {
             <Button href="/docs" size="sm">
               Documentation
             </Button>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="w-5 h-5 text-[#425466] dark:text-[#adbdcc]" />
-              ) : (
-                <Sun className="w-5 h-5 text-[#425466] dark:text-[#adbdcc]" />
-              )}
-            </button>
+            {mounted && (
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f42] transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-5 h-5 text-[#adbdcc]" />
+                ) : (
+                  <Moon className="w-5 h-5 text-[#425466]" />
+                )}
+              </button>
+            )}
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? (
-                <Moon className="w-5 h-5 text-[#425466] dark:text-[#adbdcc]" />
-              ) : (
-                <Sun className="w-5 h-5 text-[#425466] dark:text-[#adbdcc]" />
-              )}
-            </button>
+            {mounted && (
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f42] transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-5 h-5 text-[#adbdcc]" />
+                ) : (
+                  <Moon className="w-5 h-5 text-[#425466]" />
+                )}
+              </button>
+            )}
             <button
               className="text-[#425466] dark:text-[#adbdcc]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
