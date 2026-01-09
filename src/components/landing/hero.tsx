@@ -1,42 +1,70 @@
-import { Container } from "@/components/ui/container";
+'use client';
+
+import { motion } from "framer-motion";
+import { BookOpen, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
-export function Hero() {
+const Hero = () => {
   return (
-    <section className="relative min-h-[965px] flex items-center bg-white dark:bg-[#0a2540] overflow-hidden">
-      <div className="absolute inset-0 flex justify-center pointer-events-none">
-        <div className="max-w-[1080px] w-full h-full relative">
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-[#e3e8ef]/40 dark:bg-[#1a2f42]/40"></div>
-          <div className="absolute left-1/4 top-0 h-1/2 w-px bg-gradient-to-b from-[#e3e8ef]/60 to-transparent dark:from-[#1a2f42]/60"></div>
-          <div className="absolute left-1/2 top-0 h-1/2 w-px bg-gradient-to-b from-[#e3e8ef]/60 to-transparent dark:from-[#1a2f42]/60"></div>
-          <div className="absolute left-3/4 top-0 h-1/2 w-px bg-gradient-to-b from-[#e3e8ef]/60 to-transparent dark:from-[#1a2f42]/60"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-px bg-[#e3e8ef]/40 dark:bg-[#1a2f42]/40"></div>
-        </div>
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-primary/[0.02] to-background">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,hsl(var(--primary)/0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(var(--primary)/0.08),transparent_40%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)] opacity-20" />
+      
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
 
-      <Container>
-        <div className="relative max-w-[640px] pt-32 pb-24">
-          <h1 className="text-[64px] md:text-[80px] lg:text-[92px] font-medium text-[#3A3A3A] dark:text-white mb-12 leading-[1.07] tracking-[-0.04em]">
-            Build, ship & scale robotics software
+      <div className="container mx-auto relative z-10 px-6 py-24 lg:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-foreground leading-[1.1] tracking-tight mb-6">
+            The framework for{" "}
+            <span className="text-primary">autonomous robotics</span>
           </h1>
-          
-          <p className="text-lg leading-[28px] tracking-[0.2px] text-[#425466] dark:text-[#adbdcc] mb-12 max-w-[492px] font-light">
-            We make developer tools that help software engineers build, ship, and scale great robotics software. Robotics software is fragmented across too many products and tools — We unify them into one secure developer platform.
+
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            Integrated execution framework for deploying, operating, and scaling autonomous systems. Built for mission-critical robotics with live data streaming, remote control, and AI services.
           </p>
-          
-          <div className="flex flex-wrap gap-4 items-center">
-            <Button href="/docs" size="lg" className="group">
-              Start now
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Button size="lg" className="group px-8 h-12 text-base font-medium">
+              <BookOpen className="mr-2 w-5 h-5" />
+              Documentation
             </Button>
-            <button className="text-[#0a2540] dark:text-white font-medium text-sm tracking-[0.2px] hover:text-[#0173e7] dark:hover:text-[#3b9eff] transition-colors flex items-center gap-2 group">
-              Contact sales
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+            <Button variant="outline" size="lg" className="group px-8 h-12 text-base font-medium border-border hover:bg-accent">
+              <Github className="mr-2 w-5 h-5" />
+              View on GitHub
+            </Button>
+          </motion.div>
+          
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span>Cloud & On-Premise</span>
+            </div>
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-border" />
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <span>GDPR Compliant</span>
+            </div>
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-border" />
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <span>Open Architecture</span>
+            </div>
           </div>
-        </div>
-      </Container>
+        </motion.div>
+      </div>
     </section>
   );
-}
+};
+
+export default Hero;

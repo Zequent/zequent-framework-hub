@@ -1,17 +1,42 @@
-import { Navigation } from "@/components/layout/navigation";
-import { Footer } from "@/components/layout/footer";
-import { Hero } from "@/components/landing/hero";
-import { Services } from "@/components/landing/services";
+'use client';
+
+import Header from "@/components/landing/header";
+import Hero from "@/components/landing/hero";
+import Problem from "@/components/landing/problem";
+import Features from "@/components/landing/features";
+import Solution from "@/components/landing/solution";
+import Process from "@/components/landing/process";
+import Showcase from "@/components/landing/showcase";
+import Benefits from "@/components/landing/benefits";
+import Contact from "@/components/landing/contact";
+import Footer from "@/components/landing/footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a2540]">
-      <Navigation />
+    <div className="min-h-screen bg-background">
+      <Header />
       <main>
         <Hero />
-        <Services />
+        <Problem />
+        <section id="features">
+          <Features />
+        </section>
+        <section id="solution">
+          <Solution />
+        </section>
+        <section id="how-it-works">
+          <Process />
+        </section>
+        <section id="showcase">
+          <Showcase />
+        </section>
+        <Benefits />
+        <section id="contact">
+          <Contact />
+        </section>
       </main>
       <Footer />
     </div>
   );
 }
+

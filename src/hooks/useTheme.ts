@@ -15,11 +15,6 @@ function getInitialTheme(): Theme {
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -34,5 +29,5 @@ export function useTheme() {
     setTheme(current => current === "light" ? "dark" : "light");
   };
 
-  return { theme, toggleTheme, mounted };
+  return { theme, toggleTheme };
 }
