@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { BookOpen, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -35,9 +36,11 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button size="lg" className="group px-8 h-12 text-base font-medium">
-              <BookOpen className="mr-2 w-5 h-5" />
-              Documentation
+            <Button size="lg" className="group px-8 h-12 text-base font-medium" asChild>
+              <Link href="/docs">
+                <BookOpen className="mr-2 w-5 h-5" />
+                Documentation
+              </Link>
             </Button>
             <Button variant="outline" size="lg" className="group px-8 h-12 text-base font-medium border-border hover:bg-accent">
               <Github className="mr-2 w-5 h-5" />

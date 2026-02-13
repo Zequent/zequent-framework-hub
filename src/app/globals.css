@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin '@tailwindcss/typography';
+@config '../../typography.ts';
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
@@ -6,10 +8,30 @@
   --font-heading: var(--font-geist-sans);
   
   --container-max-width: 1280px;
+
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1.25rem;
+
+  --shadow-glow: 0 0 4px rgb(0 0 0 / 0.1);
+
+  --container-lg: 33rem;
+  --container-2xl: 40rem;
+  --container-3xl: 50rem;
+  --container-5xl: 66rem;
 }
 
 @layer base {
   :root {
+    --shiki-color-text: var(--color-white);
+    --shiki-token-constant: var(--color-emerald-300);
+    --shiki-token-string: var(--color-emerald-300);
+    --shiki-token-comment: var(--color-zinc-500);
+    --shiki-token-keyword: var(--color-sky-300);
+    --shiki-token-parameter: var(--color-pink-300);
+    --shiki-token-function: var(--color-violet-300);
+    --shiki-token-string-expression: var(--color-emerald-300);
+    --shiki-token-punctuation: var(--color-zinc-200);
+
     --background: 0 0% 100%;
     --foreground: 210 50% 10%;
 
@@ -124,3 +146,9 @@
 
 @variant dark (&:where(.dark, .dark *));
 @variant light (&:where(.light, .light *));
+
+@layer base {
+  [inert] ::-webkit-scrollbar {
+    display: none;
+  }
+}

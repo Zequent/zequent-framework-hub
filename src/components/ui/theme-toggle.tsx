@@ -3,36 +3,34 @@
 import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { useTheme } from 'next-themes';
 
 export function ThemeToggle() {
-  const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    const root = window.document.documentElement;
-    const initialTheme = root.classList.contains('dark') ? 'dark' : 'light';
-    setTheme(initialTheme);
+    setMounted(true);
   }, []);
 
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === 'dark';
+
   const toggleTheme = (checked: boolean) => {
-    const root = window.document.documentElement;
-    const newTheme = checked ? 'dark' : 'light';
-    
-    root.classList.remove('light', 'dark');
-    root.classList.add(newTheme);
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    setTheme(checked ? 'dark' : 'light');
   };
 
   return (
     <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-muted/50 border border-border">
-      <Sun className={`h-5 w-5 transition-colors ${theme === 'light' ? 'text-primary' : 'text-muted-foreground'}`} />
+      <Sun className={`h-5 w-5 transition-colors ${!isDark ? 'text-primary' : 'text-muted-foreground'}`} />
       <Switch
-        checked={theme === 'dark'}
+        checked={isDark}
         onCheckedChange={toggleTheme}
         aria-label="Toggle theme"
         className="data-[state=checked]:bg-primary"
       />
-      <Moon className={`h-5 w-5 transition-colors ${theme === 'dark' ? 'text-primary' : 'text-muted-foreground'}`} />
+      <Moon className={`h-5 w-5 transition-colors ${isDark ? 'text-primary' : 'text-muted-foreground'}`} />
     </div>
   );
 }

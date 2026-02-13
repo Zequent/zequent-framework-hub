@@ -1,0 +1,43 @@
+import { Guides } from '@/components/docs/Guides'
+import { Resources } from '@/components/docs/Resources'
+import { HeroPattern } from '@/components/docs/HeroPattern'
+
+export const metadata = {
+  title: 'Documentation',
+  description:
+    'Learn everything about the Zequent framework for autonomous robotics — deployment, operation, and scaling.',
+}
+
+export const sections = [
+  { title: 'Guides', id: 'guides' },
+  { title: 'Resources', id: 'resources' },
+]
+
+<HeroPattern />
+
+# Zequent Framework Documentation
+
+Use the Zequent framework to deploy, operate, and scale autonomous robotic systems. Integrate live data streaming, remote control, and AI services into your robotics workflows. {{ className: 'lead' }}
+
+<div className="not-prose mt-6 mb-16 flex gap-3">
+  <Button href="/docs/quickstart" arrow="right">
+    <>Quickstart</>
+  </Button>
+  <Button href="/docs/sdks" variant="outline">
+    <>Explore SDKs</>
+  </Button>
+</div>
+
+## Getting started {{ anchor: false }}
+
+To get started, set up your development environment, then read about how to integrate the framework modules for the capabilities you need — whether it's live data streaming, remote control, or AI inference pipelines. {{ className: 'lead' }}
+
+<div className="not-prose">
+  <Button href="/docs/quickstart" variant="text" arrow="right">
+    <>Get started with the framework</>
+  </Button>
+</div>
+
+<Guides />
+
+<Resources />
