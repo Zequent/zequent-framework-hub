@@ -142,9 +142,13 @@ function CodePanel({
   label?: string
   code?: string
 }) {
-  let child = Children.only(children)
+  let child: React.ReactNode = null
+  try {
+    child = Children.only(children)
+  } catch {
+  }
 
-  if (isValidElement(child)) {
+  if (child && isValidElement(child)) {
     const props = child.props as { tag?: string; label?: string; code?: string }
     tag = props.tag ?? tag
     label = props.label ?? label
@@ -152,9 +156,14 @@ function CodePanel({
   }
 
   if (!code) {
-    throw new Error(
-      '`CodePanel` requires a `code` prop, or a child with a `code` prop.',
-    )
+    if (isValidElement(children)) {
+      const childProps = children.props as { code?: string; children?: string }
+      code = childProps.code ?? (typeof childProps.children === 'string' ? childProps.children : '')
+    }
+  }
+
+  if (!code) {
+    code = ''
   }
 
   return (

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync-docs": "bash scripts/sync-docs.sh",
+    "prebuild": "npm run sync-docs"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.19.5",

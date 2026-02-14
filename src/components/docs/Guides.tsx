@@ -3,26 +3,24 @@ import { Heading } from '@/components/docs/Heading'
 
 const guides = [
   {
-    href: '/docs/authentication',
-    name: 'Authentication',
-    description: 'Learn how to authenticate your API requests.',
+    href: '/docs/sdk/setup',
+    name: 'Framework Setup',
+    description: 'Set up the Zequent framework and configure your environment.',
   },
   {
-    href: '/docs/pagination',
-    name: 'Pagination',
-    description: 'Understand how to work with paginated responses.',
+    href: '/docs/sdk/client/quickstart',
+    name: 'Client SDK Quick Start',
+    description: 'Get started with the Client SDK for remote control and mission autonomy.',
   },
   {
-    href: '/docs/errors',
-    name: 'Errors',
-    description:
-      'Read about the different types of errors returned by the API.',
+    href: '/docs/sdk/edge/overview',
+    name: 'Edge SDK Overview',
+    description: 'Implement edge clients for the Zequent framework ecosystem.',
   },
   {
-    href: '/docs/webhooks',
-    name: 'Webhooks',
-    description:
-      'Learn how to programmatically configure webhooks for your app.',
+    href: '/docs/sdk/client/configuration',
+    name: 'Configuration Guide',
+    description: 'Configure the Client SDK for different environments.',
   },
 ]
 

@@ -28,10 +28,10 @@ interface Resource {
 
 const resources: Array<Resource> = [
   {
-    href: '/docs/contacts',
-    name: 'Contacts',
+    href: '/docs/sdk/client/quickstart',
+    name: 'Client SDK',
     description:
-      'Learn about the contact model and how to create, retrieve, update, delete, and list contacts.',
+      'Remote control, mission autonomy, and live data streaming for your applications.',
     icon: UserIcon,
     pattern: {
       y: 16,
@@ -42,10 +42,10 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/docs/conversations',
-    name: 'Conversations',
+    href: '/docs/sdk/edge/overview',
+    name: 'Edge SDK',
     description:
-      'Learn about the conversation model and how to create, retrieve, update, delete, and list conversations.',
+      'Build edge clients to connect devices to the Zequent framework ecosystem.',
     icon: ChatBubbleIcon,
     pattern: {
       y: -6,
@@ -56,10 +56,10 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/docs/messages',
-    name: 'Messages',
+    href: '/docs/sdk/client/customer-example',
+    name: 'Examples',
     description:
-      'Learn about the message model and how to create, retrieve, update, delete, and list messages.',
+      'Step-by-step examples showing how to integrate the framework into your projects.',
     icon: EnvelopeIcon,
     pattern: {
       y: 32,
@@ -70,10 +70,10 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/docs/groups',
-    name: 'Groups',
+    href: '/docs/sdk/client/spring-boot-final',
+    name: 'Spring Boot',
     description:
-      'Learn about the group model and how to create, retrieve, update, delete, and list groups.',
+      'Integrate the Zequent Client SDK with Spring Boot applications.',
     icon: UsersIcon,
     pattern: {
       y: 22,

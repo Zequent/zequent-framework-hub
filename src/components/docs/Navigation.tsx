@@ -231,10 +231,28 @@ function NavigationGroup({
 
 export const navigation: Array<NavGroup> = [
   {
-    title: 'Guides',
+    title: 'Getting Started',
     links: [
       { title: 'Introduction', href: '/docs' },
-      { title: 'Quickstart', href: '/docs/quickstart' },
+      { title: 'Framework Setup', href: '/docs/sdk/setup' },
+    ],
+  },
+  {
+    title: 'Client SDK',
+    links: [
+      { title: 'Quick Start', href: '/docs/sdk/client/quickstart' },
+      { title: 'Configuration', href: '/docs/sdk/client/configuration' },
+      { title: 'Examples', href: '/docs/sdk/client/customer-example' },
+      { title: 'Spring Boot', href: '/docs/sdk/client/spring-boot-final' },
+    ],
+  },
+  {
+    title: 'Edge SDK',
+    links: [
+      { title: 'Overview', href: '/docs/sdk/edge/overview' },
+      { title: 'Adapter', href: '/docs/sdk/edge/adapter' },
+      { title: 'Connector', href: '/docs/sdk/edge/connector' },
+      { title: 'Live Data', href: '/docs/sdk/edge/live-data' },
     ],
   },
 ]
