@@ -60,5 +60,3 @@ The sync script and workflow are configured to pull from:
 - Schedule: every 6 hours (`0 */6 * * *`) (Can be edited due to requirements)
 
 To change the sync frequency, edit the cron expression in `.github/workflows/sync-docs.yml`.
-
-```
