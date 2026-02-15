@@ -13,14 +13,14 @@ const guides = [
     description: 'Get started with the Client SDK for remote control and mission autonomy.',
   },
   {
-    href: '/docs/sdk/edge/overview',
-    name: 'Edge SDK Overview',
-    description: 'Implement edge clients for the Zequent framework ecosystem.',
+    href: '/docs/sdk/edge/quickstart',
+    name: 'Edge SDK Quick Start',
+    description: 'Get the Edge SDK running and connect your first device.',
   },
   {
-    href: '/docs/sdk/client/configuration',
-    name: 'Configuration Guide',
-    description: 'Configure the Client SDK for different environments.',
+    href: '/docs/sdk/edge/mission-autonomy',
+    name: 'Mission Autonomy',
+    description: 'Build autonomous mission workflows with the Edge SDK services.',
   },
 ]
 

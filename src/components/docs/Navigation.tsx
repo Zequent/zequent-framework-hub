@@ -250,9 +250,13 @@ export const navigation: Array<NavGroup> = [
     title: 'Edge SDK',
     links: [
       { title: 'Overview', href: '/docs/sdk/edge/overview' },
+      { title: 'Quick Start', href: '/docs/sdk/edge/quickstart' },
+      { title: 'Configuration', href: '/docs/sdk/edge/configuration' },
       { title: 'Adapter', href: '/docs/sdk/edge/adapter' },
       { title: 'Connector', href: '/docs/sdk/edge/connector' },
       { title: 'Live Data', href: '/docs/sdk/edge/live-data' },
+      { title: 'Mission Autonomy', href: '/docs/sdk/edge/mission-autonomy' },
+      { title: 'Models', href: '/docs/sdk/edge/models' },
     ],
   },
 ]

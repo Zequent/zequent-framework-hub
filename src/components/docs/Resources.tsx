@@ -56,10 +56,10 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/docs/sdk/client/customer-example',
-    name: 'Examples',
+    href: '/docs/sdk/edge/live-data',
+    name: 'Live Data',
     description:
-      'Step-by-step examples showing how to integrate the framework into your projects.',
+      'Stream real-time telemetry and sensor data from edge devices to your applications.',
     icon: EnvelopeIcon,
     pattern: {
       y: 32,
