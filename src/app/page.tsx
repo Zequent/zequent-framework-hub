@@ -3,8 +3,8 @@
 import Header from "@/components/landing/header";
 import Hero from "@/components/landing/hero";
 import Problem from "@/components/landing/problem";
-import Features from "@/components/landing/features";
 import Solution from "@/components/landing/solution";
+import Features from "@/components/landing/features";
 import Process from "@/components/landing/process";
 import Showcase from "@/components/landing/showcase";
 import Benefits from "@/components/landing/benefits";
@@ -18,11 +18,11 @@ export default function Home() {
       <main>
         <Hero />
         <Problem />
-        <section id="features">
-          <Features />
-        </section>
         <section id="solution">
           <Solution />
+        </section>
+        <section id="features">
+          <Features />
         </section>
         <section id="how-it-works">
           <Process />

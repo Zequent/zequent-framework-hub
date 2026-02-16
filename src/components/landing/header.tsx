@@ -12,11 +12,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { label: "Features", href: "#features" },
-    { label: "Solution", href: "#solution" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Showcase", href: "#showcase" },
-    { label: "Contact", href: "#contact" },
+    { label: "Architecture", href: "#solution" },
+    { label: "Services", href: "#features" },
+    { label: "Getting Started", href: "#how-it-works" },
+    { label: "Why Zequent", href: "#showcase" },
   ];
 
   return (
@@ -29,9 +28,9 @@ const Header = () => {
       <div className="container px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-10 h-10">
+            <div className="relative w-10 h-10 rounded-lg overflow-hidden">
               <Image
-                src="/zequent_technologies_logo.jpeg"
+                src="/images/logo.jpeg"
                 alt="Zequent Logo"
                 fill
                 className="object-contain"
@@ -51,10 +50,19 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/docs"
+              className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+            >
+              Docs
+            </Link>
           </nav>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
+            <Button size="sm" asChild>
+              <Link href="/docs/sdk/setup">Get Started</Link>
+            </Button>
           </div>
 
           <button
@@ -84,8 +92,18 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <div className="flex justify-center pt-4 border-t border-border">
+              <Link
+                href="/docs"
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-medium text-primary hover:text-primary/80 transition-colors py-2"
+              >
+                Documentation
+              </Link>
+              <div className="flex items-center gap-3 pt-4 border-t border-border">
                 <ThemeToggle />
+                <Button size="sm" className="flex-1" asChild>
+                  <Link href="/docs/sdk/setup">Get Started</Link>
+                </Button>
               </div>
             </nav>
           </motion.div>

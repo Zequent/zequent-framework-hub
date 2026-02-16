@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description: "Developer hub for Zequent custom framework",
   icons: {
     icon: [
-      { url: "/zequent_technologies_logo.jpeg" },
+      { url: "/images/logo.jpeg" },
     ],
-    apple: "/zequent_technologies_logo.jpeg",
+    apple: "/images/logo.jpeg",
   },
 };
 

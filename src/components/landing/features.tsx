@@ -1,49 +1,44 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Boxes, Activity, Joystick, MapPin, Eye } from "lucide-react";
+import { Joystick, Activity, MapPin, Link2, Eye, Video } from "lucide-react";
 
-const features = [
+const capabilities = [
   {
-    icon: Boxes,
-    category: "Modular Solutions",
-    title: "A fully integrated suite of programmable services",
-    description: "Bring together everything required to program, automate and scale robotics. Zequent's products power robotics for SaaS, Platforms, Managed Services, and everything in between.",
-    tags: ["Integrated", "Scalable", "Flexible"],
+    icon: Joystick,
+    title: "Remote Control",
+    description: "Direct command execution for flight control, gimbal positioning, and manual input. Low-latency command-response architecture ensures responsive operation regardless of distance.",
   },
   {
     icon: Activity,
-    category: "Live Data Service",
-    title: "Real-time data streaming and telemetry",
-    description: "Stream live position data, battery status, and telemetry from your entire fleet. High-throughput data pipeline provides instant visibility into operational metrics across all systems.",
-    tags: ["Streaming", "Position", "Battery", "Telemetry"],
-  },
-  {
-    icon: Joystick,
-    category: "Remote Control Service",
-    title: "Human control and live task management",
-    description: "Direct robot control with live input handling, gimbal control, and real-time command execution. Secure, low-latency connection ensures responsive operation from anywhere.",
-    tags: ["Live inputs", "Gimbal", "Control"],
+    title: "Live Telemetry",
+    description: "Persistent data streams for position, battery, signal, and custom sensor data. Push from the edge, subscribe from the application -- real-time visibility across your entire fleet.",
   },
   {
     icon: MapPin,
-    category: "Mission Autonomy Service",
-    title: "Mission planning, management and scheduling",
-    description: "Comprehensive mission lifecycle management from planning to execution. Define operations, tasks, and waypoints with intelligent scheduling and real-time monitoring.",
-    tags: ["Operations", "Tasks", "Waypoints", "Lifecycle"],
+    title: "Mission Planning",
+    description: "Define missions with tasks, waypoints, and scheduling. The platform handles execution order, state transitions, and progress tracking across concurrent operations.",
+  },
+  {
+    icon: Video,
+    title: "Video Streaming",
+    description: "Live video feeds from cameras and sensors on the edge. Multi-stream support, recording, and relay -- all routed through the platform with no direct device access required.",
+  },
+  {
+    icon: Link2,
+    title: "Asset Management",
+    description: "Registry for all connected hardware -- drones, docks, vehicles, sensors. Manage organizations, capabilities, and metadata. The single source of truth for your deployment.",
   },
   {
     icon: Eye,
-    category: "Detection/AI Service",
-    title: "Computer vision and analytics",
-    description: "Advanced object detection, tracking, and AI-powered analytics. Deploy smart features with chat interfaces and intelligent decision-making capabilities at the edge.",
-    tags: ["Object detection", "Tracking", "AI detection", "Chat", "Smart features"],
+    title: "Detection and AI",
+    description: "Computer vision and inference pipelines at the edge or in the cloud. Object detection, tracking, and classification with pluggable model backends integrated into the data flow.",
   },
 ];
 
 const Features = () => {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-b from-background to-muted/20">
+    <section className="py-24 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,56 +48,35 @@ const Features = () => {
           className="max-w-3xl mx-auto text-center mb-16"
         >
           <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
-            Platform Services
+            Capabilities
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
-            Everything you need to build great robotics software
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-6">
+            Everything autonomous systems need
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Robotics software is fragmented across too many products — We unify them into one secure developer platform.
+            From direct hardware control to fleet-wide intelligence. Each capability is a service in the platform, accessible through the SDK with typed interfaces and structured responses.
           </p>
         </motion.div>
 
-        <div className="space-y-6 max-w-5xl mx-auto">
-          {features.map((feature, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {capabilities.map((cap, index) => (
             <motion.div
-              key={feature.category}
+              key={cap.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-8 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors group"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-primary/10 group-hover:bg-primary/15 transition-colors">
-                    <feature.icon className="w-8 h-8 text-primary" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-                      {feature.category}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    {feature.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {feature.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs font-medium bg-primary/5 text-primary rounded-full border border-primary/10"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+                <cap.icon className="w-6 h-6 text-primary" />
               </div>
+              <h3 className="text-lg font-heading font-semibold text-foreground mb-3">
+                {cap.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {cap.description}
+              </p>
             </motion.div>
           ))}
         </div>

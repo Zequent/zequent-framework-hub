@@ -2,41 +2,47 @@
 
 import { Shield } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-zequent-light border-t border-zequent-border">
+    <footer className="py-12 bg-muted/30 border-t border-border">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-                <span className="text-primary-foreground font-heading font-bold text-lg">Z</span>
+            <Link href="/" className="flex items-center gap-2 mb-4">
+              <div className="relative w-8 h-8 rounded overflow-hidden">
+                <Image
+                  src="/images/logo.jpeg"
+                  alt="Zequent Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <span className="font-heading font-bold text-xl text-foreground">Zequent</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              A unified developer platform for modern robotics software development.
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              The developer framework for autonomous robotics. Build, deploy, and operate autonomous systems at scale.
             </p>
           </div>
           
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4">Product</h4>
+            <h4 className="font-heading font-semibold text-foreground mb-4">Framework</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#solution" className="text-muted-foreground hover:text-primary transition-colors">
-                  Features
-                </a>
+                <Link href="/docs/sdk/setup" className="text-muted-foreground hover:text-primary transition-colors">
+                  Setup Guide
+                </Link>
               </li>
               <li>
-                <a href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">
-                  How It Works
-                </a>
+                <Link href="/docs/sdk/client/quickstart" className="text-muted-foreground hover:text-primary transition-colors">
+                  Client SDK
+                </Link>
               </li>
               <li>
-                <a href="#showcase" className="text-muted-foreground hover:text-primary transition-colors">
-                  Showcase
-                </a>
+                <Link href="/docs/sdk/edge/overview" className="text-muted-foreground hover:text-primary transition-colors">
+                  Edge SDK
+                </Link>
               </li>
               <li>
                 <Link href="/docs" className="text-muted-foreground hover:text-primary transition-colors">
@@ -50,13 +56,13 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
-                  Contact
+                <a href="mailto:office@zequent.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  office@zequent.com
                 </a>
               </li>
               <li>
-                <a href="mailto:office@zequent.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  Email Us
+                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  Contact Sales
                 </a>
               </li>
             </ul>
@@ -79,7 +85,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-zequent-border">
+        <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -92,7 +98,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Zequent. All rights reserved.
+              {new Date().getFullYear()} Zequent Technologies. All rights reserved.
             </p>
           </div>
         </div>
