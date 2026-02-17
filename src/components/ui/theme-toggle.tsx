@@ -1,8 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
 import { useTheme } from 'next-themes';
 
 export function ThemeToggle() {
@@ -13,24 +11,33 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return <div className="w-14 h-7 rounded-full bg-muted/30" />;
+  }
 
   const isDark = resolvedTheme === 'dark';
 
-  const toggleTheme = (checked: boolean) => {
-    setTheme(checked ? 'dark' : 'light');
-  };
-
   return (
-    <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-muted/50 border border-border">
-      <Sun className={`h-5 w-5 transition-colors ${!isDark ? 'text-primary' : 'text-muted-foreground'}`} />
-      <Switch
-        checked={isDark}
-        onCheckedChange={toggleTheme}
-        aria-label="Toggle theme"
-        className="data-[state=checked]:bg-primary"
+    <button
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className={`
+        relative w-14 h-7 rounded-full p-[3px] transition-colors duration-500 ease-in-out
+        ${isDark 
+          ? 'bg-slate-700 hover:bg-slate-600' 
+          : 'bg-amber-100 hover:bg-amber-200/80'
+        }
+      `}
+      aria-label="Toggle theme"
+    >
+      <div
+        className={`
+          relative w-[22px] h-[22px] rounded-full transition-all duration-500 ease-in-out
+          ${isDark 
+            ? 'translate-x-[26px] bg-slate-900 shadow-[inset_-3px_-2px_0_0_theme(colors.slate.400)]' 
+            : 'translate-x-0 bg-amber-400 shadow-[0_0_8px_2px_theme(colors.amber.300/40)]'
+          }
+        `}
       />
-      <Moon className={`h-5 w-5 transition-colors ${isDark ? 'text-primary' : 'text-muted-foreground'}`} />
-    </div>
+    </button>
   );
 }
