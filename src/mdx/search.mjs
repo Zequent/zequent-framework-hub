@@ -80,17 +80,12 @@ export default function Search(nextConfig = {}) {
               import FlexSearch from 'flexsearch'
 
               let sectionIndex = new FlexSearch.Document({
-                tokenize: 'full',
+                tokenize: 'forward',
                 document: {
                   id: 'url',
                   index: 'content',
                   store: ['title', 'pageTitle'],
                 },
-                context: {
-                  resolution: 9,
-                  depth: 2,
-                  bidirectional: true
-                }
               })
 
               let data = ${JSON.stringify(data)}
