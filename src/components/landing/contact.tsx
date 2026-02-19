@@ -1,99 +1,101 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, ArrowUpRight } from "lucide-react";
 import ContactForm from "@/components/landing/contact-form";
+
+const contactDetails = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "office@zequent.com",
+    href: "mailto:office@zequent.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+41 (0) 762087620",
+    href: "tel:+41762087620",
+  },
+  {
+    icon: MapPin,
+    label: "Office",
+    value: "Chüngstrasse 31, 8424 Embrach, ZH, Switzerland",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "Zequent Technologies",
+    href: "https://www.linkedin.com/company/zequent-technologies",
+    external: true,
+  },
+];
 
 const Contact = () => {
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section className="py-24 lg:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background pointer-events-none" />
+
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-14"
+            className="mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4 leading-[1.1]">
-              Get in touch
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              For custom deployment requirements, enterprise licensing, or technical questions — we&apos;d love to hear from you.
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+              Contact
             </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-[1.1] max-w-lg">
+              Let&apos;s build something together
+            </h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-2 space-y-6"
+              className="lg:col-span-4 flex flex-col justify-between"
             >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-heading font-semibold text-foreground mb-1">Email</h3>
-                  <a
-                    href="mailto:office@zequent.com"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    office@zequent.com
-                  </a>
-                </div>
+              <div className="space-y-1">
+                {contactDetails.map((item, i) => {
+                  const content = (
+                    <div className="group flex items-start gap-4 py-4 border-b border-border/50 last:border-0">
+                      <item.icon className="w-[18px] h-[18px] text-muted-foreground mt-0.5 shrink-0 group-hover:text-primary transition-colors" />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground/70 mb-0.5">
+                          {item.label}
+                        </p>
+                        <p className="text-sm text-foreground group-hover:text-primary transition-colors leading-relaxed">
+                          {item.value}
+                          {item.external && (
+                            <ArrowUpRight className="inline w-3.5 h-3.5 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  );
+
+                  return item.href ? (
+                    <a
+                      key={i}
+                      href={item.href}
+                      {...(item.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={i}>{content}</div>
+                  );
+                })}
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-heading font-semibold text-foreground mb-1">Phone</h3>
-                  <a
-                    href="tel:+41762087620"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +41 (0) 762087620
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-heading font-semibold text-foreground mb-1">Office</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Chüngstrasse 31<br />
-                    8424 Embrach, ZH<br />
-                    Switzerland
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-sm font-heading font-semibold text-foreground mb-1">LinkedIn</h3>
-                  <a
-                    href="https://www.linkedin.com/company/zequent-technologies"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    Zequent Technologies
-                  </a>
-                </div>
-              </div>
             </motion.div>
 
             <motion.div
@@ -101,9 +103,9 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-3"
+              className="lg:col-span-8"
             >
-              <div className="p-6 sm:p-8 bg-card rounded-2xl border border-border">
+              <div className="p-6 sm:p-10 rounded-2xl border border-border/60 dark:border-white/[0.06] bg-card/50 dark:bg-white/[0.02] backdrop-blur-sm">
                 <ContactForm />
               </div>
             </motion.div>
