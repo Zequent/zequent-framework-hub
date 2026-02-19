@@ -223,7 +223,7 @@ export default function PrivacyPage() {
             <p className="text-muted-foreground leading-relaxed mb-4">
               If you have questions about this Privacy Policy or wish to exercise your rights, contact us:
             </p>
-            <div className="bg-muted/30 border border-border rounded-lg p-6">
+            <div className="bg-muted/30 border border-border rounded-lg p-6 space-y-2">
               <p className="text-foreground font-medium mb-2">Zequent Technologies</p>
               <p className="text-muted-foreground">
                 Email:{" "}
@@ -236,6 +236,15 @@ export default function PrivacyPage() {
                 <a href="mailto:office@zequent.com" className="text-primary hover:underline">
                   office@zequent.com
                 </a>
+              </p>
+              <p className="text-muted-foreground">
+                Phone:{" "}
+                <a href="tel:+41762087620" className="text-primary hover:underline">
+                  +41 (0) 762087620
+                </a>
+              </p>
+              <p className="text-muted-foreground">
+                Chüngstrasse 31, 8424 Embrach, ZH, Switzerland
               </p>
             </div>
           </section>
