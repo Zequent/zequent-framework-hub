@@ -47,7 +47,7 @@ const Solution = () => {
               One framework, edge to cloud
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Zequent replaces the patchwork of vendor SDKs, custom adapters, and glue code with a single layered architecture. Hardware adapters and application logic connect through well-defined service boundaries. You write the parts that matter -- the framework handles the rest.
+              zqnt replaces the patchwork of vendor SDKs, custom adapters, and glue code with a single layered architecture. Hardware adapters and application logic connect through well-defined service boundaries. You write the parts that matter -- the framework handles the rest.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Deploy on EU-hosted cloud infrastructure or fully air-gapped on-premise installations. Same platform, same SDKs, same configuration. Your application code does not change between deployment targets.

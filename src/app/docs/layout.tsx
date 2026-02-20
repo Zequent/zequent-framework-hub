@@ -6,11 +6,11 @@ import { type Section } from '@/components/docs/SectionProvider'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Zequent Docs',
-    default: 'Zequent Documentation',
+    template: '%s - zqnt Docs',
+    default: 'zqnt Documentation',
   },
   description:
-    'Documentation for the Zequent autonomous robotics framework.',
+    'Documentation for the zqnt autonomous robotics framework.',
 }
 
 export default async function DocsLayout({

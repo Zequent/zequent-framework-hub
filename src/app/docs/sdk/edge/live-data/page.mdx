@@ -24,7 +24,7 @@ The `LiveDataService` interface manages persistent gRPC telemetry streams betwee
 
 ## Overview
 
-Live telemetry data is the real-time heartbeat of every asset in the Zequent ecosystem. Edge adapters continuously push telemetry -- position, battery, environmental readings, camera state, and more -- to the Live Data Service, where it is broadcast to Client SDK consumers and stored for historical analysis.
+Live telemetry data is the real-time heartbeat of every asset in the zqnt ecosystem. Edge adapters continuously push telemetry -- position, battery, environmental readings, camera state, and more -- to the Live Data Service, where it is broadcast to Client SDK consumers and stored for historical analysis.
 
 The `LiveDataService` abstracts the complexity of managing gRPC streams. Internally, it creates one `BroadcastProcessor` per device serial number and subscribes it to the Live Data Service gRPC stub. Streams reconnect automatically on failure with exponential backoff.
 

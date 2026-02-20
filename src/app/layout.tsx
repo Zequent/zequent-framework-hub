@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zequent Framework Hub",
-  description: "Developer hub for Zequent custom framework",
+  title: "zqnt by Zequent – Autonomous Robotics Framework",
+  description: "Developer hub for the zqnt autonomous robotics framework by Zequent",
   icons: {
     icon: [
       { url: "/images/logo.jpeg" },

@@ -41,7 +41,7 @@ const WhyZequent = () => {
           className="max-w-3xl mx-auto text-center mb-16"
         >
           <span className="inline-block text-sm font-medium text-primary-foreground/70 uppercase tracking-wider mb-4">
-            Why Zequent
+            Why zqnt
           </span>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
             What you actually get

@@ -5,7 +5,7 @@ const guides = [
   {
     href: '/docs/sdk/setup',
     name: 'Framework Setup',
-    description: 'Set up the Zequent framework and configure your environment.',
+    description: 'Set up the zqnt framework and configure your environment.',
   },
   {
     href: '/docs/sdk/client/quickstart',

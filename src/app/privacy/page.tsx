@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: "Privacy Policy - Zequent",
-  description: "Privacy Policy for Zequent Framework",
+  description: "Privacy Policy for zqnt by Zequent",
 };
 
 export default function PrivacyPage() {
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
               1. Introduction
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Zequent Technologies ("we", "our", or "us") operates the Zequent Framework platform. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our framework, SDKs, and cloud services.
+              Zequent Technologies ("we", "our", or "us") operates the zqnt platform. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our framework, SDKs, and cloud services.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               We are committed to protecting your privacy and ensuring GDPR compliance for all EU-based users and customers.
@@ -189,7 +189,7 @@ export default function PrivacyPage() {
               9. Open Source and On-Premise Deployments
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              If you use Zequent Framework in an on-premise or self-hosted environment, this Privacy Policy applies only to your use of our documentation website and any cloud services you choose to integrate. Data processing within your on-premise deployment is under your control and responsibility.
+              If you use zqnt in an on-premise or self-hosted environment, this Privacy Policy applies only to your use of our documentation website and any cloud services you choose to integrate. Data processing within your on-premise deployment is under your control and responsibility.
             </p>
           </section>
 
