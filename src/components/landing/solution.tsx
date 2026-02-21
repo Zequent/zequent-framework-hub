@@ -8,7 +8,7 @@ import Link from "next/link";
 const pillars = [
   {
     icon: Layers,
-    title: "Client SDKs",
+    title: "SDKs",
     description: "Build applications that command and monitor autonomous systems. Typed interfaces for remote control, telemetry, missions, and more. Add a dependency, configure, and start calling services.",
     link: "/docs/sdk/client/quickstart",
     linkLabel: "Client SDK Docs",
@@ -44,7 +44,7 @@ const Solution = () => {
               The Solution
             </span>
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-6">
-              One framework, edge to cloud
+              One platform, edge to cloud
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               zqnt replaces the patchwork of vendor SDKs, custom adapters, and glue code with a single layered architecture. Hardware adapters and application logic connect through well-defined service boundaries. You write the parts that matter -- the framework handles the rest.

@@ -17,14 +17,15 @@ const Hero = () => {
           className="max-w-3xl mx-auto text-center mb-14"
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-foreground leading-[1.08] tracking-tight mb-6">
-            The framework for{" "}
+            Infrastructure for{" "}
             <span className="text-primary">
               autonomous systems
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-            Build, deploy, and operate autonomous robotics from a single platform. Unified SDKs and services for remote control, live telemetry, mission planning, and AI.
+            Engineering teams use Zequent to deploy autonomous systems faster, operate them safely, and scale them without rewriting their stack.<br className="hidden sm:block" />
+            Think Kubernetes, but for autonomous systems running in the real world.
           </p>
 
           <Link href="/docs/sdk/setup" className="inline-block group">

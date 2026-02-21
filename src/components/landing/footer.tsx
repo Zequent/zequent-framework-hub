@@ -19,7 +19,7 @@ const Footer = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="font-heading font-bold text-lg text-foreground">Zequent</span>
+              <span className="font-heading font-bold text-lg text-foreground">ZEQUENT</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5 max-w-xs">
               The developer framework for autonomous robotics. Build, deploy, and operate at scale.

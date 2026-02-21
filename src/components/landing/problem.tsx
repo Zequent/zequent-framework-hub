@@ -39,7 +39,7 @@ const Problem = () => {
                 The Problem
               </span>
               <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-6">
-                Building robotics software is still a mess
+                Autonomous systems break in production
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Teams building autonomous systems spend more time on infrastructure plumbing than on the product itself. The tooling landscape is fragmented, vendor-specific, and not designed for production.

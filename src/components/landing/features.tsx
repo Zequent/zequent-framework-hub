@@ -21,7 +21,7 @@ const capabilities = [
   },
   {
     icon: Video,
-    title: "Video Streaming",
+    title: "Data Streaming",
     description: "Live video feeds from cameras and sensors on the edge. Multi-stream support, recording, and relay -- all routed through the platform with no direct device access required.",
   },
   {

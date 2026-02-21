@@ -37,7 +37,7 @@ const Header = () => {
                 priority
               />
             </div>
-            <span className="font-heading font-bold text-xl text-foreground">Zequent</span>
+            <span className="font-heading font-bold text-xl text-foreground">ZEQUENT</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">

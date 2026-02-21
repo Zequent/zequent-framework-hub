@@ -45,7 +45,7 @@ const Showcase = () => {
             Built for real-world operations
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Defense, public safety, agriculture, industrial inspection -- the same platform adapts to the mission. From single-asset control to coordinated fleet operations across sites.
+            Defense, public safety, agriculture, industrial inspection -- the leading companies rely on Zequent for running autonomous systems in mission-critical production.
           </p>
         </motion.div>
 
