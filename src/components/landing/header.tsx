@@ -15,7 +15,7 @@ const Header = () => {
     { label: "Architecture", href: "#solution" },
     { label: "Services", href: "#features" },
     { label: "Getting Started", href: "#how-it-works" },
-    { label: "Why zqnt", href: "#showcase" },
+    { label: "Why Zequent", href: "#showcase" },
   ];
 
   return (

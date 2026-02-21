@@ -45,7 +45,7 @@ const resources: Array<Resource> = [
     href: '/docs/sdk/edge/overview',
     name: 'Edge SDK',
     description:
-      'Build edge clients to connect devices to the zqnt ecosystem.',
+      'Build edge clients to connect devices to the Zequent ecosystem.',
     icon: ChatBubbleIcon,
     pattern: {
       y: -6,
@@ -73,7 +73,7 @@ const resources: Array<Resource> = [
     href: '/docs/sdk/client/spring-boot-final',
     name: 'Spring Boot',
     description:
-      'Integrate the zqnt Client SDK with Spring Boot applications.',
+      'Integrate the Zequent SDK with Spring Boot applications.',
     icon: UsersIcon,
     pattern: {
       y: 22,

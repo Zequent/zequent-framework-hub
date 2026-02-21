@@ -5,22 +5,22 @@ const guides = [
   {
     href: '/docs/sdk/setup',
     name: 'Framework Setup',
-    description: 'Set up the zqnt framework and configure your environment.',
+    description: 'Set up the Zequent and configure your environment.',
   },
   {
     href: '/docs/sdk/client/quickstart',
     name: 'Client SDK Quick Start',
-    description: 'Get started with the Client SDK for remote control and mission autonomy.',
+    description: 'Get started with the Zequent Client SDK for remote control and mission autonomy.',
   },
   {
     href: '/docs/sdk/edge/quickstart',
     name: 'Edge SDK Quick Start',
-    description: 'Get the Edge SDK running and connect your first device.',
+    description: 'Get the Zequent Edge SDK running and connect your first device.',
   },
   {
     href: '/docs/sdk/edge/mission-autonomy',
     name: 'Mission Autonomy',
-    description: 'Build autonomous mission workflows with the Edge SDK services.',
+    description: 'Build autonomous mission workflows with the Zequent Edge SDK services.',
   },
 ]
 

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: "Terms of Service - Zequent",
-  description: "Terms of Service for zqnt by Zequent",
+  description: "Terms of Service for Zequent",
 };
 
 export default function TermsPage() {
@@ -31,7 +31,7 @@ export default function TermsPage() {
               1. Acceptance of Terms
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              By accessing or using zqnt, including our SDKs, documentation, and cloud services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms").
+              By accessing or using Zequent, including our SDKs, documentation, and cloud services (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms").
             </p>
             <p className="text-muted-foreground leading-relaxed">
               If you are using the Services on behalf of an organization, you represent that you have the authority to bind that organization to these Terms.
@@ -43,7 +43,7 @@ export default function TermsPage() {
               2. Service Description
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Zequent provides zqnt, a developer framework for building, deploying, and operating autonomous systems. The Services include:
+              Zequent provides Zequent, a developer framework for building, deploying, and operating autonomous systems. The Services include:
             </p>
             <ul className="list-disc list-inside text-muted-foreground space-y-2">
               <li>Client and Edge SDKs for building autonomous applications</li>
