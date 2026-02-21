@@ -62,12 +62,12 @@ const Solution = () => {
           >
             <div className="relative rounded-2xl overflow-hidden border border-border aspect-[4/3]">
               <Image
-                src="/images/code-screen.jpg"
-                alt="Development workflow"
+                src="/images/platform-architecture.png"
+                alt="Zequent platform architecture — edge to cloud"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
             </div>
           </motion.div>
         </div>

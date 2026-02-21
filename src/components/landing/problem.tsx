@@ -76,8 +76,8 @@ const Problem = () => {
           >
             <div className="relative rounded-2xl overflow-hidden border border-border aspect-[4/5]">
               <Image
-                src="/images/network.jpg"
-                alt="Complex network infrastructure"
+                src="/images/mission-autonomy.png"
+                alt="Mission autonomy workflow complexity"
                 fill
                 className="object-cover"
               />

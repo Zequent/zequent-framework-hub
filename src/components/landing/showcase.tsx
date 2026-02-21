@@ -5,25 +5,32 @@ import Image from "next/image";
 
 const images = [
   {
-    src: "/images/drone-fleet.jpg",
-    alt: "Autonomous drone fleet",
-    label: "Fleet Operations",
-    span: "lg:col-span-2",
-    aspect: "aspect-[21/9]",
+    src: "/images/eu-autonomous-brain.jpg",
+    alt: "Autonomous systems intelligence",
+    label: "Defense & Security",
+    span: "",
+    aspect: "aspect-[16/10]",
+  },
+  {
+    src: "/images/industrial-inspection.jpg",
+    alt: "Autonomous industrial inspection",
+    label: "Industrial Inspection",
+    span: "",
+    aspect: "aspect-[16/10]",
   },
   {
     src: "/images/drone-agriculture.jpg",
     alt: "Agricultural drone in the field",
     label: "Agriculture",
     span: "",
-    aspect: "aspect-[4/3]",
+    aspect: "aspect-[16/10]",
   },
   {
-    src: "/images/operations.jpg",
-    alt: "Operational command center",
-    label: "Command and Control",
+    src: "/images/drone-fleet.jpg",
+    alt: "Coordinated autonomous drone fleet",
+    label: "Fleet Operations",
     span: "",
-    aspect: "aspect-[4/3]",
+    aspect: "aspect-[16/10]",
   },
 ];
 
@@ -66,9 +73,11 @@ const Showcase = () => {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-sm font-medium text-foreground">{img.label}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-white bg-black/60 backdrop-blur-sm rounded-md px-3 py-1.5">
+                    {img.label}
+                  </span>
                 </div>
               </div>
             </motion.div>

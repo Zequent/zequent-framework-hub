@@ -58,13 +58,13 @@ const Hero = () => {
         >
           <div className="relative rounded-2xl overflow-hidden border border-border shadow-2xl shadow-primary/5 aspect-[16/9]">
             <Image
-              src="/images/drone-field.jpg"
-              alt="Autonomous systems in operation"
+              src="/images/counter-intrusion.jpg"
+              alt="Autonomous systems in night operations"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
           </div>
         </motion.div>
       </div>
