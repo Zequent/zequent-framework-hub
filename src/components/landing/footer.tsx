@@ -10,16 +10,23 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12 py-14">
           <div className="col-span-2 md:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-5">
-              <div className="relative w-8 h-8 rounded overflow-hidden">
-                <Image
-                  src="/images/logo.jpeg"
-                  alt="Zequent Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-heading font-bold text-lg text-foreground">ZEQUENT</span>
+            <Link href="/" className="inline-flex items-center mb-5">
+              <Image
+                src="/images/Zequent_Typografie_black.svg"
+                alt="Zequent"
+                width={120}
+                height={36}
+                className="h-7 w-auto dark:hidden"
+                style={{ objectFit: 'contain' }}
+              />
+              <Image
+                src="/images/Zequent_Typografie_white.svg"
+                alt="Zequent"
+                width={120}
+                height={36}
+                className="h-7 w-auto hidden dark:block"
+                style={{ objectFit: 'contain' }}
+              />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5 max-w-xs">
               The developer framework for autonomous robotics. Build, deploy, and operate at scale.

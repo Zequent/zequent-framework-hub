@@ -27,17 +27,25 @@ const Header = () => {
     >
       <div className="container px-6">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-lg overflow-hidden">
-              <Image
-                src="/images/logo.jpeg"
-                alt="Zequent Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <span className="font-heading font-bold text-xl text-foreground">ZEQUENT</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/Zequent_Typografie_black.svg"
+              alt="Zequent"
+              width={140}
+              height={42}
+              className="h-8 w-auto dark:hidden"
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+            <Image
+              src="/images/Zequent_Typografie_white.svg"
+              alt="Zequent"
+              width={140}
+              height={42}
+              className="h-8 w-auto hidden dark:block"
+              style={{ objectFit: 'contain' }}
+              priority
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
