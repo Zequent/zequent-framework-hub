@@ -22,8 +22,9 @@ else
     git clone --depth 1 --branch "$DOCS_BRANCH" "$DOCS_REPO" "$TEMP_DIR"
 fi
 
-# Clean previous sync
-rm -rf "$TARGET_DIR"
+# Clean only synced
+rm -rf "$TARGET_DIR/client"
+rm -rf "$TARGET_DIR/edge"
 mkdir -p "$TARGET_DIR"
 
 # convert_to_page <source_file> <target_directory>

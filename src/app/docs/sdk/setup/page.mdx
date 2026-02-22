@@ -1,0 +1,134 @@
+export const metadata = {
+  title: 'Framework Setup',
+}
+
+# Framework Setup
+
+Get the Zequent framework running locally and configure your development environment. {{ className: 'lead' }}
+
+## Prerequisites
+
+Before you start, make sure you have the following installed:
+
+- **Java 25** or higher
+- **Maven 3.9.9** or higher
+- **Docker** or **Podman** (for running platform services)
+- **GitHub account** with access to the Zequent packages repository
+
+---
+
+## Step 1: Configure GitHub Packages Access
+
+The Zequent SDKs are hosted on GitHub Packages. Add your credentials to Maven's `settings.xml`:
+
+```xml
+<!-- ~/.m2/settings.xml -->
+<settings>
+  <servers>
+    <server>
+      <id>github-zequent</id>
+      <username>YOUR_GITHUB_USERNAME</username>
+      <password>YOUR_GITHUB_TOKEN</password>
+    </server>
+  </servers>
+</settings>
+```
+
+Generate a personal access token at [GitHub Settings → Tokens](https://github.com/settings/tokens) with the `read:packages` scope.
+
+---
+
+## Step 2: Add the Repository
+
+In your project's `pom.xml`, add the Zequent packages repository:
+
+```xml
+<repositories>
+  <repository>
+    <id>github-zequent</id>
+    <url>https://maven.pkg.github.com/Zequent/zequent-framework</url>
+  </repository>
+</repositories>
+```
+
+---
+
+## Step 3: Choose Your SDK
+
+Zequent provides two SDKs depending on your use case:
+
+### Client SDK
+
+For **backend applications** that need to control devices remotely, manage missions, and stream live data.
+
+```xml
+<dependency>
+    <groupId>com.zequent.framework.client.sdk</groupId>
+    <artifactId>java-client-sdk</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+→ Continue with the [Client SDK Quick Start](/docs/sdk/client/quickstart)
+
+### Edge SDK
+
+For **edge devices** that connect to the Zequent platform as adapters — receiving commands and pushing telemetry.
+
+```xml
+<dependency>
+    <groupId>com.zequent.framework.edge.sdk</groupId>
+    <artifactId>java-edge-sdk</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+→ Continue with the [Edge SDK Quick Start](/docs/sdk/edge/quickstart)
+
+---
+
+## Step 4: Start Platform Services
+
+For local development, start the required platform services with Docker Compose:
+
+```bash
+git clone https://github.com/Zequent/zequent-framework.git
+cd zequent-framework
+docker compose up -d
+```
+
+This starts the core services your SDK will connect to (gRPC endpoints for remote control, mission autonomy, and live data).
+
+---
+
+## Step 5: Configure Your Application
+
+Create a `.env` file in your project root with the service endpoints:
+
+```bash
+# Service Endpoints (local development)
+REMOTE_CONTROL_SERVICE_HOST=localhost
+REMOTE_CONTROL_SERVICE_PORT=9091
+MISSION_AUTONOMY_SERVICE_HOST=localhost
+MISSION_AUTONOMY_SERVICE_PORT=9092
+LIVE_DATA_SERVICE_HOST=localhost
+LIVE_DATA_SERVICE_PORT=9093
+```
+
+---
+
+## Verify Your Setup
+
+Run a quick smoke test to confirm everything is connected:
+
+```bash
+mvn quarkus:dev
+```
+
+If the application starts without connection errors, your setup is complete.
+
+## Next Steps
+
+- [Client SDK Quick Start](/docs/sdk/client/quickstart) — Build your first remote control application
+- [Edge SDK Quick Start](/docs/sdk/edge/quickstart) — Create an edge adapter that connects a device
+- [Edge SDK Overview](/docs/sdk/edge/overview) — Understand the architecture and core concepts
