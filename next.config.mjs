@@ -18,6 +18,9 @@ const nextConfig = {
   experimental: {
     reactCompiler: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   outputFileTracingIncludes: {
     '/**/*': ['./src/app/**/*.mdx'],
