@@ -1,6 +1,6 @@
 'use client';
 
-import { Shield, Linkedin } from "lucide-react";
+import { Shield, Linkedin, Github } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -31,15 +31,26 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed mb-5 max-w-xs">
               The developer framework for autonomous robotics. Build, deploy, and operate at scale.
             </p>
-            <a
-              href="https://www.linkedin.com/company/zequent-technologies"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/Zequent"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/zequent-technologies"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
           <div className="col-span-1 md:col-span-2">

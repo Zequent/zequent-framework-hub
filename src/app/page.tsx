@@ -8,6 +8,7 @@ import Features from "@/components/landing/features";
 import Process from "@/components/landing/process";
 import Showcase from "@/components/landing/showcase";
 import Benefits from "@/components/landing/benefits";
+import Repos from "@/components/landing/repos";
 import Contact from "@/components/landing/contact";
 import Footer from "@/components/landing/footer";
 
@@ -31,6 +32,9 @@ export default function Home() {
           <Showcase />
         </section>
         <Benefits />
+        <section id="repos">
+          <Repos />
+        </section>
         <section id="contact">
           <Contact />
         </section>
