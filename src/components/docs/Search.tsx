@@ -196,7 +196,7 @@ function SearchDialog({
           </div>
 
           {query.trim() !== '' && (
-            <div className="border-t border-zinc-200 bg-white dark:border-zinc-100/5 dark:bg-white/2.5">
+            <div className="border-t border-zinc-200 bg-card dark:border-zinc-100/5 dark:bg-white/2.5">
               {results.length === 0 ? (
                 <div className="p-6 text-center">
                   <NoResultsIcon className="mx-auto h-5 w-5 stroke-zinc-900 dark:stroke-zinc-600" />
@@ -308,7 +308,7 @@ export function Search() {
     <div className="hidden lg:block lg:max-w-md lg:flex-auto">
       <button
         type="button"
-        className="hidden h-8 w-full items-center gap-2 rounded-full bg-white pr-3 pl-2 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 lg:flex dark:bg-white/5 dark:text-zinc-400 dark:ring-white/10 dark:ring-inset dark:hover:ring-white/20"
+        className="hidden h-8 w-full items-center gap-2 rounded-full bg-card pr-3 pl-2 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 lg:flex dark:bg-white/5 dark:text-zinc-400 dark:ring-white/10 dark:ring-inset dark:hover:ring-white/20"
         {...buttonProps}
       >
         <SearchIcon className="h-5 w-5 stroke-current" />

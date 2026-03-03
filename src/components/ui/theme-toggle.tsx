@@ -23,8 +23,8 @@ export function ThemeToggle() {
       className={`
         relative w-14 h-7 rounded-full p-[3px] transition-colors duration-500 ease-in-out
         ${isDark 
-          ? 'bg-slate-700 hover:bg-slate-600' 
-          : 'bg-amber-100 hover:bg-amber-200/80'
+          ? 'bg-zinc-700 hover:bg-zinc-600' 
+          : 'bg-zinc-300 hover:bg-zinc-200'
         }
       `}
       aria-label="Toggle theme"
@@ -33,8 +33,8 @@ export function ThemeToggle() {
         className={`
           relative w-[22px] h-[22px] rounded-full transition-all duration-500 ease-in-out
           ${isDark 
-            ? 'translate-x-[26px] bg-slate-900 shadow-[inset_-3px_-2px_0_0_theme(colors.slate.400)]' 
-            : 'translate-x-0 bg-amber-400 shadow-[0_0_8px_2px_theme(colors.amber.300/40)]'
+            ? 'translate-x-[26px] bg-zinc-900 shadow-[inset_-3px_-2px_0_0_theme(--color-zinc-400)]' 
+            : 'translate-x-0 bg-zequent-coral shadow-[0_0_8px_2px_theme(--color-zequent-coral/40)]'
           }
         `}
       />

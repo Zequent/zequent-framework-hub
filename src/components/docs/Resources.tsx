@@ -113,7 +113,7 @@ function ResourcePattern({
         />
       </div>
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-linear-to-r from-[#D7EDEA] to-[#F4FBDF] opacity-0 transition duration-300 group-hover:opacity-100 dark:from-[#202D2E] dark:to-[#303428]"
+        className="absolute inset-0 rounded-2xl bg-linear-to-r from-zequent-coral/10 to-zequent-red/5 opacity-0 transition duration-300 group-hover:opacity-100 dark:from-zequent-coral/5 dark:to-zequent-red/3"
         style={style}
       />
       <motion.div

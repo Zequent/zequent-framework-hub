@@ -174,6 +174,7 @@ export default {
           // Headings
           h1: {
             color: 'var(--tw-prose-headings)',
+            fontFamily: 'var(--font-orbitron)',
             fontWeight: '700',
             fontSize: theme('fontSize.2xl')[0],
             ...theme('fontSize.2xl')[1],
@@ -181,6 +182,7 @@ export default {
           },
           h2: {
             color: 'var(--tw-prose-headings)',
+            fontFamily: 'var(--font-orbitron)',
             fontWeight: '600',
             fontSize: theme('fontSize.lg')[0],
             ...theme('fontSize.lg')[1],
@@ -189,6 +191,7 @@ export default {
           },
           h3: {
             color: 'var(--tw-prose-headings)',
+            fontFamily: 'var(--font-orbitron)',
             fontSize: theme('fontSize.base')[0],
             ...theme('fontSize.base')[1],
             fontWeight: '600',

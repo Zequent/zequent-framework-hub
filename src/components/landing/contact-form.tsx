@@ -249,7 +249,7 @@ export default function ContactForm() {
                       className={cn(
                         "absolute z-50 top-full left-0 right-0 mt-1.5",
                         "rounded-lg border shadow-lg",
-                        "bg-white dark:bg-zinc-900 border-border/60 dark:border-white/[0.1]",
+                        "bg-popover dark:bg-zinc-900 border-border/60 dark:border-white/[0.1]",
                         "overflow-hidden",
                       )}
                     >
@@ -265,7 +265,7 @@ export default function ContactForm() {
                           }}
                           className={cn(
                             "flex w-full items-center gap-3 px-3.5 py-2.5 text-sm transition-colors",
-                            "bg-white hover:bg-muted/80 dark:bg-zinc-900 dark:hover:bg-white/[0.06]",
+                            "bg-popover hover:bg-muted/80 dark:bg-zinc-900 dark:hover:bg-white/[0.06]",
                             selectedSubject === subject.value
                               ? "text-primary font-medium !bg-primary/5 dark:!bg-primary/10"
                               : "text-foreground",

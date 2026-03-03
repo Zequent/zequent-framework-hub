@@ -31,7 +31,7 @@ const reasons = [
 
 const WhyZequent = () => {
   return (
-    <section className="py-24 lg:py-32 bg-primary text-primary-foreground">
+    <section className="py-24 lg:py-32 bg-primary text-white">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,13 +40,13 @@ const WhyZequent = () => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center mb-16"
         >
-          <span className="inline-block text-sm font-medium text-primary-foreground/70 uppercase tracking-wider mb-4">
+          <span className="inline-block text-sm font-medium text-white/70 uppercase tracking-wider mb-4">
             Why Zequent
           </span>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">
             What you actually get
           </h2>
-          <p className="text-lg text-primary-foreground/80 leading-relaxed">
+          <p className="text-lg text-white/80 leading-relaxed">
             Technical decisions that make a difference when you are shipping autonomous systems to production environments.
           </p>
         </motion.div>
@@ -59,12 +59,12 @@ const WhyZequent = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="p-6 rounded-lg bg-primary-foreground/5 border border-primary-foreground/10"
+              className="p-6 rounded-lg bg-white/5 border border-white/10"
             >
               <h3 className="text-lg font-heading font-semibold mb-3">
                 {reason.title}
               </h3>
-              <p className="text-sm text-primary-foreground/70 leading-relaxed">
+              <p className="text-sm text-white/70 leading-relaxed">
                 {reason.description}
               </p>
             </motion.div>
