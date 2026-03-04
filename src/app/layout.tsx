@@ -22,12 +22,7 @@ const orbitron = Orbitron({
 export const metadata: Metadata = {
   title: "Zequent – Autonomous Robotics Framework",
   description: "Developer hub for the Zequent autonomous robotics framework by Zequent",
-  icons: {
-    icon: [
-      { url: "/images/logo.jpeg" },
-    ],
-    apple: "/images/logo.jpeg",
-  },
+
 };
 
 export default function RootLayout({
@@ -37,6 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/images/Zequent_favicon_black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+        <link rel="icon" href="/images/Zequent_favicon_white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+        <link rel="apple-touch-icon" href="/images/Zequent_favicon_black.svg" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} antialiased`}
       >

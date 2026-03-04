@@ -97,7 +97,7 @@ const WhyZequent = () => {
           {reasons.map((reason) => (
             <div
               key={reason.title}
-              className="p-6 rounded-lg bg-white/5 border border-white/10"
+              className="p-6 bg-white/5 border border-white/10"
             >
               <h3 className="text-lg font-heading font-semibold mb-3">
                 {reason.title}

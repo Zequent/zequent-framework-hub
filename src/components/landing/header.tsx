@@ -39,7 +39,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/Zequent_Typografie_black.svg"
+              src="/images/Zequent_logo_black.svg"
               alt="Zequent"
               width={140}
               height={42}
@@ -48,7 +48,7 @@ const Header = () => {
               priority
             />
             <Image
-              src="/images/Zequent_Typografie_white.svg"
+              src="/images/Zequent_logo_white.svg"
               alt="Zequent"
               width={140}
               height={42}

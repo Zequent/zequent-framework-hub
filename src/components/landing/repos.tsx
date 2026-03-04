@@ -110,7 +110,7 @@ const Repos = () => {
                 href="https://github.com/Zequent"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-sm font-medium bg-foreground text-background px-5 py-2.5 rounded-lg hover:bg-foreground/90 transition-colors"
+                className="inline-flex items-center gap-2.5 text-sm font-medium bg-foreground text-background px-5 py-2.5 hover:bg-foreground/90 transition-colors"
               >
                 <Github className="w-4 h-4" />
                 github.com/Zequent

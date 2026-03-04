@@ -47,7 +47,7 @@ function FormInput({
       <input
         id={id}
         className={cn(
-          "flex h-11 w-full rounded-lg border bg-muted/50 dark:bg-white/[0.04] px-3.5 py-2 text-sm text-foreground",
+          "flex h-11 w-full border bg-muted/50 dark:bg-white/[0.04] px-3.5 py-2 text-sm text-foreground",
           "border-border/60 dark:border-white/[0.08]",
           "placeholder:text-muted-foreground/60",
           "transition-all duration-200",
@@ -142,7 +142,7 @@ export default function ContactForm() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.15, type: "spring", stiffness: 200, damping: 15 }}
-            className="w-16 h-16 rounded-2xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center mb-6"
+            className="w-16 h-16 bg-primary/10 dark:bg-primary/15 flex items-center justify-center mb-6"
           >
             <CheckCircle2 className="w-8 h-8 text-primary" />
           </motion.div>
@@ -207,7 +207,7 @@ export default function ContactForm() {
                   onClick={() => setSubjectOpen(!subjectOpen)}
                   onBlur={() => setTimeout(() => setSubjectOpen(false), 150)}
                   className={cn(
-                    "flex h-11 w-full items-center justify-between rounded-lg border px-3.5 py-2 text-sm text-left",
+                    "flex h-11 w-full items-center justify-between border px-3.5 py-2 text-sm text-left",
                     "bg-muted/50 dark:bg-white/[0.04]",
                     "border-border/60 dark:border-white/[0.08]",
                     "transition-all duration-200",
@@ -248,7 +248,7 @@ export default function ContactForm() {
                       transition={{ duration: 0.15 }}
                       className={cn(
                         "absolute z-50 top-full left-0 right-0 mt-1.5",
-                        "rounded-lg border shadow-lg",
+                        "border shadow-lg",
                         "bg-popover dark:bg-zinc-900 border-border/60 dark:border-white/[0.1]",
                         "overflow-hidden",
                       )}
@@ -302,7 +302,7 @@ export default function ContactForm() {
               id="message"
               placeholder="Tell us about your project, requirements, or questions..."
               className={cn(
-                "flex w-full rounded-lg border px-3.5 py-3 text-sm text-foreground",
+                "flex w-full border px-3.5 py-3 text-sm text-foreground",
                 "bg-muted/50 dark:bg-white/[0.04]",
                 "border-border/60 dark:border-white/[0.08]",
                 "placeholder:text-muted-foreground/60",

@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="col-span-2 md:col-span-4">
             <Link href="/" className="inline-flex items-center mb-5">
               <Image
-                src="/images/Zequent_Typografie_black.svg"
+                src="/images/Zequent_logo_black.svg"
                 alt="Zequent"
                 width={120}
                 height={36}
@@ -20,7 +20,7 @@ const Footer = () => {
                 style={{ objectFit: 'contain' }}
               />
               <Image
-                src="/images/Zequent_Typografie_white.svg"
+                src="/images/Zequent_logo_white.svg"
                 alt="Zequent"
                 width={120}
                 height={36}

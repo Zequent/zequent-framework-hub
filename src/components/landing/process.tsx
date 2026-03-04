@@ -98,7 +98,7 @@ const HowItWorks = () => {
         <div ref={stepsRef} className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
           {steps.map((step) => (
             <div key={step.number} className="relative">
-              <div className="p-6 bg-card rounded-xl border border-border h-full">
+              <div className="p-6 bg-card border border-border h-full">
                 <span className="text-5xl font-heading font-bold text-primary/15 block mb-4">
                   {step.number}
                 </span>

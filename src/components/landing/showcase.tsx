@@ -109,7 +109,7 @@ const Showcase = () => {
         <div ref={gridRef} className="grid lg:grid-cols-2 gap-4 max-w-6xl mx-auto mb-16">
           {images.map((img) => (
             <div key={img.label} className={img.span}>
-              <div className={`relative rounded-xl overflow-hidden border border-border ${img.aspect}`}>
+              <div className={`relative overflow-hidden border border-border ${img.aspect}`}>
                 <Image
                   src={img.src}
                   alt={img.alt}
@@ -118,7 +118,7 @@ const Showcase = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-white bg-black/60 backdrop-blur-sm rounded-md px-3 py-1.5">
+                  <span className="inline-block text-xs font-semibold uppercase tracking-wider text-white bg-black/60 backdrop-blur-sm px-3 py-1.5">
                     {img.label}
                   </span>
                 </div>

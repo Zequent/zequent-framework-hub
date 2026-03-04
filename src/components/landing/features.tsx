@@ -112,9 +112,9 @@ const Features = () => {
           {capabilities.map((cap) => (
             <div
               key={cap.title}
-              className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors group"
+              className="p-6 bg-card border border-border hover:border-primary/30 transition-colors group"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
                 <cap.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-lg font-heading font-semibold text-foreground mb-3">

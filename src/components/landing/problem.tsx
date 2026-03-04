@@ -124,7 +124,7 @@ const Problem = () => {
               {painPoints.map((point) => (
                 <div
                   key={point.label}
-                  className="p-5 bg-card rounded-xl border border-border"
+                  className="p-5 bg-card border border-border"
                 >
                   <h3 className="text-base font-heading font-semibold text-foreground mb-2">
                     {point.label}
@@ -138,7 +138,7 @@ const Problem = () => {
           </div>
 
           <div ref={imageRef} className="hidden lg:block">
-            <div className="relative rounded-2xl overflow-hidden border border-border aspect-[4/5]">
+            <div className="relative overflow-hidden border border-border aspect-[4/5]">
               <Image
                 src="/images/mission-autonomy.png"
                 alt="Mission autonomy workflow complexity"

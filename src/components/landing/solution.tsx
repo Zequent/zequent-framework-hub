@@ -120,7 +120,7 @@ const Solution = () => {
           </div>
 
           <div ref={imageRef}>
-            <div className="relative rounded-2xl overflow-hidden border border-border aspect-[4/3]">
+            <div className="relative overflow-hidden border border-border aspect-[4/3]">
               <Image
                 src="/images/platform-architecture.png"
                 alt="Zequent platform architecture — edge to cloud"
@@ -136,9 +136,9 @@ const Solution = () => {
           {pillars.map((pillar) => (
             <div
               key={pillar.title}
-              className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors"
+              className="p-6 bg-card border border-border hover:border-primary/30 transition-colors"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
+              <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5">
                 <pillar.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-lg font-heading font-semibold text-foreground mb-3">

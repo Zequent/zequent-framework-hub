@@ -4,7 +4,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <>
       <Image
-        src="/images/Zequent_Typografie_black.svg"
+        src="/images/Zequent_logo_black.svg"
         alt="Zequent"
         width={120}
         height={36}
@@ -13,7 +13,7 @@ export function Logo({ className }: { className?: string }) {
         priority
       />
       <Image
-        src="/images/Zequent_Typografie_white.svg"
+        src="/images/Zequent_logo_white.svg"
         alt="Zequent"
         width={120}
         height={36}

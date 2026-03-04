@@ -141,7 +141,7 @@ const Contact = () => {
             </div>
 
             <div ref={formRef} className="lg:col-span-8">
-              <div className="p-6 sm:p-10 rounded-2xl border border-border/60 dark:border-white/[0.06] bg-card/50 dark:bg-white/[0.02] backdrop-blur-sm">
+              <div className="p-6 sm:p-10 border border-border/60 dark:border-white/[0.06] bg-card/50 dark:bg-white/[0.02] backdrop-blur-sm">
                 <ContactForm />
               </div>
             </div>
