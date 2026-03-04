@@ -1,7 +1,11 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from "next/image";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const painPoints = [
   {
@@ -23,18 +27,88 @@ const painPoints = [
 ];
 
 const Problem = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // reveal
+      if (headingRef.current) {
+        const els = headingRef.current.children;
+        gsap.set(els, { opacity: 0, y: 30 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+
+      // Reveal from left
+      if (cardsRef.current) {
+        const cards = cardsRef.current.children;
+        gsap.set(cards, { opacity: 0, x: -30, y: 20 });
+        gsap.to(cards, {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+
+      if (imageRef.current) {
+        gsap.set(imageRef.current, { opacity: 0, scale: 0.95 });
+        gsap.to(imageRef.current, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        });
+
+        gsap.to(imageRef.current, {
+          yPercent: -5,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 bg-muted/30 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-6 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="mb-10"
-            >
+            <div ref={headingRef} className="mb-10">
               <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
                 The Problem
               </span>
@@ -44,16 +118,12 @@ const Problem = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Teams building autonomous systems spend more time on infrastructure plumbing than on the product itself. The tooling landscape is fragmented, vendor-specific, and not designed for production.
               </p>
-            </motion.div>
+            </div>
 
-            <div className="space-y-4">
-              {painPoints.map((point, index) => (
-                <motion.div
+            <div ref={cardsRef} className="space-y-4">
+              {painPoints.map((point) => (
+                <div
                   key={point.label}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="p-5 bg-card rounded-xl border border-border"
                 >
                   <h3 className="text-base font-heading font-semibold text-foreground mb-2">
@@ -62,18 +132,12 @@ const Problem = () => {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {point.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="hidden lg:block"
-          >
+          <div ref={imageRef} className="hidden lg:block">
             <div className="relative rounded-2xl overflow-hidden border border-border aspect-[4/5]">
               <Image
                 src="/images/mission-autonomy.png"
@@ -83,7 +147,7 @@ const Problem = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

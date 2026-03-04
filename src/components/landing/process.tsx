@@ -1,9 +1,13 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -24,16 +28,62 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        const els = headerRef.current.children;
+        gsap.set(els, { opacity: 0, y: 30 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: headerRef.current, start: 'top 80%', once: true },
+        });
+      }
+
+      // slide up one by one
+      if (stepsRef.current) {
+        const cards = stepsRef.current.children;
+        gsap.set(cards, { opacity: 0, y: 60 });
+        gsap.to(cards, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: stepsRef.current, start: 'top 82%', once: true },
+        });
+      }
+
+      // fade in CTA button
+      if (ctaRef.current) {
+        gsap.set(ctaRef.current, { opacity: 0, y: 20 });
+        gsap.to(ctaRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: ctaRef.current, start: 'top 90%', once: true },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 bg-background">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
-        >
+        <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
             How It Works
           </span>
@@ -43,18 +93,11 @@ const HowItWorks = () => {
           <p className="text-lg text-muted-foreground leading-relaxed">
             Get operational fast. The framework handles infrastructure so you focus on your application logic and hardware integration.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="relative"
-            >
+        <div ref={stepsRef} className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+          {steps.map((step) => (
+            <div key={step.number} className="relative">
               <div className="p-6 bg-card rounded-xl border border-border h-full">
                 <span className="text-5xl font-heading font-bold text-primary/15 block mb-4">
                   {step.number}
@@ -66,24 +109,18 @@ const HowItWorks = () => {
                   {step.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center"
-        >
+        <div ref={ctaRef} className="text-center">
           <Button size="lg" className="h-12 px-8 text-base font-medium" asChild>
             <Link href="/docs/sdk/setup">
               Start Building
               <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

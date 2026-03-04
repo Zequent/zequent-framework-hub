@@ -1,7 +1,11 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, ArrowUpRight, BookOpen, Bug, GitPullRequest } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const repositories = [
   {
@@ -31,18 +35,52 @@ const repositories = [
 ];
 
 const Repos = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Sidebar reveal
+      if (sidebarRef.current) {
+        const els = sidebarRef.current.children;
+        gsap.set(els, { opacity: 0, y: 25 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: sidebarRef.current, start: 'top 80%', once: true },
+        });
+      }
+
+      //slide from right
+      if (listRef.current) {
+        const items = listRef.current.querySelectorAll('a');
+        gsap.set(items, { opacity: 0, x: 20 });
+        gsap.to(items, {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: listRef.current, start: 'top 82%', once: true },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32">
+    <section ref={sectionRef} className="py-24 lg:py-32">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="lg:sticky lg:top-32 lg:self-start"
-            >
+            <div ref={sidebarRef} className="lg:sticky lg:top-32 lg:self-start">
               <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
                 Repositories
               </span>
@@ -78,22 +116,18 @@ const Repos = () => {
                 github.com/Zequent
                 <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
               </a>
-            </motion.div>
+            </div>
 
-            <div className="relative">
+            <div className="relative" ref={listRef}>
               <div className="absolute left-[11px] top-4 bottom-4 w-px bg-border hidden md:block" />
 
               <div className="space-y-0">
-                {repositories.map((repo, index) => (
-                  <motion.a
+                {repositories.map((repo) => (
+                  <a
                     key={repo.repo}
                     href={repo.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, x: 12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
                     className="group flex items-start gap-5 py-6 first:pt-0 last:pb-0"
                   >
                     <div className="relative shrink-0 hidden md:flex items-center justify-center w-[23px] h-[23px] mt-0.5">
@@ -114,7 +148,7 @@ const Repos = () => {
                         {repo.description}
                       </p>
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>

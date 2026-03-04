@@ -1,6 +1,10 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const reasons = [
   {
@@ -30,16 +34,54 @@ const reasons = [
 ];
 
 const WhyZequent = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        const els = headerRef.current.children;
+        gsap.set(els, { opacity: 0, y: 30 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: headerRef.current, start: 'top 80%', once: true },
+        });
+      }
+
+      // Card reveal anim
+      if (gridRef.current) {
+        const cards = gridRef.current.children;
+        gsap.set(cards, { opacity: 0, y: 40, scale: 0.96 });
+        gsap.to(cards, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: {
+            each: 0.08,
+            grid: [2, 3],
+            from: 'start',
+          },
+          ease: 'power3.out',
+          scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 bg-primary text-white">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-primary text-white">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
-        >
+        <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block text-sm font-medium text-white/70 uppercase tracking-wider mb-4">
             Why Zequent
           </span>
@@ -49,16 +91,12 @@ const WhyZequent = () => {
           <p className="text-lg text-white/80 leading-relaxed">
             Technical decisions that make a difference when you are shipping autonomous systems to production environments.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {reasons.map((reason, index) => (
-            <motion.div
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {reasons.map((reason) => (
+            <div
               key={reason.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
               className="p-6 rounded-lg bg-white/5 border border-white/10"
             >
               <h3 className="text-lg font-heading font-semibold mb-3">
@@ -67,7 +105,7 @@ const WhyZequent = () => {
               <p className="text-sm text-white/70 leading-relaxed">
                 {reason.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

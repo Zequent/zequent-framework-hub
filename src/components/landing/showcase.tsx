@@ -1,7 +1,11 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from "next/image";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const images = [
   {
@@ -35,16 +39,62 @@ const images = [
 ];
 
 const Showcase = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const closingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        const els = headerRef.current.children;
+        gsap.set(els, { opacity: 0, y: 30 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: headerRef.current, start: 'top 80%', once: true },
+        });
+      }
+
+      if (gridRef.current) {
+        const cards = gridRef.current.children;
+        gsap.set(cards, { opacity: 0, scale: 0.92, y: 40 });
+        gsap.to(cards, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true },
+        });
+      }
+
+      // Closing statement
+      if (closingRef.current) {
+        gsap.set(closingRef.current, { opacity: 0, y: 30 });
+        gsap.to(closingRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: closingRef.current, start: 'top 85%', once: true },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 bg-muted/30 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
-        >
+        <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
             In the Field
           </span>
@@ -54,18 +104,11 @@ const Showcase = () => {
           <p className="text-lg text-muted-foreground leading-relaxed">
             Defense, public safety, agriculture, industrial inspection -- the leading companies rely on Zequent for running autonomous systems in mission-critical production.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-4 max-w-6xl mx-auto mb-16">
-          {images.map((img, index) => (
-            <motion.div
-              key={img.label}
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={img.span}
-            >
+        <div ref={gridRef} className="grid lg:grid-cols-2 gap-4 max-w-6xl mx-auto mb-16">
+          {images.map((img) => (
+            <div key={img.label} className={img.span}>
               <div className={`relative rounded-xl overflow-hidden border border-border ${img.aspect}`}>
                 <Image
                   src={img.src}
@@ -80,21 +123,15 @@ const Showcase = () => {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto text-center"
-        >
+        <div ref={closingRef} className="max-w-4xl mx-auto text-center">
           <p className="text-2xl sm:text-3xl font-heading font-bold text-foreground leading-tight">
             From prototype to production. Same platform, any scale.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

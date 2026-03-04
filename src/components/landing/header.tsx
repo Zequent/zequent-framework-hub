@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,6 +11,16 @@ import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!headerRef.current) return;
+    gsap.fromTo(
+      headerRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+    );
+  }, []);
 
   const navLinks = [
     { label: "Architecture", href: "#solution" },
@@ -19,10 +30,9 @@ const Header = () => {
   ];
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+    <header
+      ref={headerRef}
+      style={{ opacity: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
     >
       <div className="container px-6">
@@ -83,10 +93,7 @@ const Header = () => {
         </div>
 
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+          <div
             className="md:hidden py-4 border-t border-border"
           >
             <nav className="flex flex-col gap-4">
@@ -114,10 +121,10 @@ const Header = () => {
                 </Button>
               </div>
             </nav>
-          </motion.div>
+          </div>
         )}
       </div>
-    </motion.header>
+    </header>
   );
 };
 

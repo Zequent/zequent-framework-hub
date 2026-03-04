@@ -1,7 +1,11 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Joystick, Activity, MapPin, Link2, Eye, Video } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const capabilities = [
   {
@@ -37,16 +41,62 @@ const capabilities = [
 ];
 
 const Features = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        const els = headerRef.current.children;
+        gsap.set(els, { opacity: 0, y: 30 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+
+      // reveal w scaling
+      if (gridRef.current) {
+        const cards = gridRef.current.children;
+        gsap.set(cards, { opacity: 0, y: 50, scale: 0.95 });
+        gsap.to(cards, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: {
+            each: 0.1,
+            grid: [2, 3],
+            from: 'start',
+          },
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 82%',
+            once: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 bg-muted/30">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
-        >
+        <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
             Capabilities
           </span>
@@ -56,16 +106,12 @@ const Features = () => {
           <p className="text-lg text-muted-foreground leading-relaxed">
             From direct hardware control to fleet-wide intelligence. Each capability is a service in the platform, accessible through the SDK with typed interfaces and structured responses.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {capabilities.map((cap, index) => (
-            <motion.div
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {capabilities.map((cap) => (
+            <div
               key={cap.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
               className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors group"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
@@ -77,7 +123,7 @@ const Features = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {cap.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

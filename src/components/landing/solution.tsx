@@ -1,9 +1,13 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Layers, Radio, Cpu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   {
@@ -30,16 +34,77 @@ const pillars = [
 ];
 
 const Solution = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const pillarsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // text reveal
+      if (textRef.current) {
+        const els = textRef.current.children;
+        gsap.set(els, { opacity: 0, y: 30 });
+        gsap.to(els, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+
+      // Image scale
+      if (imageRef.current) {
+        gsap.set(imageRef.current, { opacity: 0, scale: 0.93, x: 40 });
+        gsap.to(imageRef.current, {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      }
+
+      // stagger
+      if (pillarsRef.current) {
+        const cards = pillarsRef.current.children;
+        gsap.set(cards, { opacity: 0, y: 40 });
+        gsap.to(cards, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: pillarsRef.current,
+            start: 'top 82%',
+            once: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 bg-background">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
+          <div ref={textRef}>
             <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
               The Solution
             </span>
@@ -52,14 +117,9 @@ const Solution = () => {
             <p className="text-muted-foreground leading-relaxed">
               Deploy on EU-hosted cloud infrastructure or fully air-gapped on-premise installations. Same platform, same SDKs, same configuration. Your application code does not change between deployment targets.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div ref={imageRef}>
             <div className="relative rounded-2xl overflow-hidden border border-border aspect-[4/3]">
               <Image
                 src="/images/platform-architecture.png"
@@ -69,17 +129,13 @@ const Solution = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {pillars.map((pillar, index) => (
-            <motion.div
+        <div ref={pillarsRef} className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {pillars.map((pillar) => (
+            <div
               key={pillar.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
@@ -95,7 +151,7 @@ const Solution = () => {
                 {pillar.linkLabel}
                 <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
