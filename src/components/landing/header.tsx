@@ -4,7 +4,6 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useState } from "react";
@@ -38,23 +37,15 @@ const Header = () => {
       <div className="container px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center">
-            <Image
+            <img
               src="/images/Zequent_logo_black.svg"
               alt="Zequent"
-              width={140}
-              height={42}
               className="h-8 w-auto dark:hidden"
-              style={{ objectFit: 'contain' }}
-              priority
             />
-            <Image
+            <img
               src="/images/Zequent_logo_white.svg"
               alt="Zequent"
-              width={140}
-              height={42}
               className="h-8 w-auto hidden dark:block"
-              style={{ objectFit: 'contain' }}
-              priority
             />
           </Link>
 

@@ -2,7 +2,6 @@
 
 import { Shield, Linkedin, Github } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -11,21 +10,15 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12 py-14">
           <div className="col-span-2 md:col-span-4">
             <Link href="/" className="inline-flex items-center mb-5">
-              <Image
+              <img
                 src="/images/Zequent_logo_black.svg"
                 alt="Zequent"
-                width={120}
-                height={36}
                 className="h-7 w-auto dark:hidden"
-                style={{ objectFit: 'contain' }}
               />
-              <Image
+              <img
                 src="/images/Zequent_logo_white.svg"
                 alt="Zequent"
-                width={120}
-                height={36}
                 className="h-7 w-auto hidden dark:block"
-                style={{ objectFit: 'contain' }}
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-5 max-w-xs">
