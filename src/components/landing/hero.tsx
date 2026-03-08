@@ -3,10 +3,62 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from "next/image";
 import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Drone fleet anim
+type PatrolType = 'sweep' | 'orbit' | 'figure8';
+const drones: { top: string; left: string; size: number; opacity: number; delay: number; entryFrom: { x: number; y: number }; patrol: PatrolType; speed: number }[] = [
+  { top: '5%',  left: '78%', size: 30, opacity: 0.3, delay: 0.0, entryFrom: { x: 200,  y: -100 }, patrol: 'sweep',   speed: 5 },
+  { top: '14%', left: '92%', size: 34, opacity: 0.45, delay: 0.15, entryFrom: { x: 250,  y: -60 }, patrol: 'sweep',   speed: 4.5 },
+  { top: '26%', left: '66%', size: 40, opacity: 0.15, delay: 0.3, entryFrom: { x: -120, y: 80 },  patrol: 'orbit',   speed: 7 },
+  { top: '30%', left: '86%', size: 44, opacity: 0.5,  delay: 0.1, entryFrom: { x: 180,  y: -40 }, patrol: 'orbit',   speed: 6 },
+  { top: '44%', left: '74%', size: 52, opacity: 0.35, delay: 0.2, entryFrom: { x: 160,  y: 60 },  patrol: 'figure8', speed: 8 },
+  { top: '48%', left: '92%', size: 48, opacity: 0.55, delay: 0.05, entryFrom: { x: 220,  y: 20 },  patrol: 'figure8', speed: 7.5 },
+  { top: '62%', left: '68%', size: 36, opacity: 0.12, delay: 0.45, entryFrom: { x: -100, y: 120 }, patrol: 'sweep',   speed: 6.5 },
+  { top: '66%', left: '88%', size: 42, opacity: 0.4,  delay: 0.1, entryFrom: { x: 200,  y: 80 },  patrol: 'orbit',   speed: 5.5 },
+  { top: '80%', left: '78%', size: 38, opacity: 0.25, delay: 0.35, entryFrom: { x: 140,  y: 140 }, patrol: 'orbit',   speed: 9 },
+  { top: '82%', left: '94%', size: 46, opacity: 0.5,  delay: 0.0, entryFrom: { x: 260,  y: 100 }, patrol: 'figure8', speed: 8 },
+];
+
+// Patrol behavior anims with gasp
+const patrolPaths = {
+  sweep: (speed: number) => ({
+    keyframes: [
+      { x: 3,  y: -1,  rotate: -0.5, duration: speed * 0.3 },
+      { x: -2, y: 2,   rotate: 0.8,  duration: speed * 0.4 },
+      { x: 1,  y: -2,  rotate: -0.3, duration: speed * 0.3 },
+      { x: 0,  y: 0,   rotate: 0,    duration: speed * 0.3 },
+    ],
+    repeat: -1,
+    ease: 'power2.inOut',
+  }),
+  orbit: (speed: number) => ({
+    keyframes: [
+      { x: 8,   y: 0,   rotate: -1.5, duration: speed * 0.35 },
+      { x: 8,   y: 0,   rotate: -1.5, duration: speed * 0.15 },
+      { x: -4,  y: 3,   rotate: 1,    duration: speed * 0.35 },
+      { x: -4,  y: 3,   rotate: 1,    duration: speed * 0.1 },
+      { x: 0,   y: 0,   rotate: 0,    duration: speed * 0.25 },
+    ],
+    repeat: -1,
+    ease: 'power3.inOut',
+  }),
+  figure8: (speed: number) => ({
+    keyframes: [
+      { x: 12,  y: -6,  rotate: -2,   duration: speed * 0.08 },
+      { x: 12,  y: -6,  rotate: -1.5, duration: speed * 0.35 }, 
+      { x: 12,  y: -6,  rotate: -1.8, duration: speed * 0.05 },
+      { x: -5,  y: 4,   rotate: 1,    duration: speed * 0.08 },
+      { x: -5,  y: 4,   rotate: 0.5,  duration: speed * 0.3 },
+      { x: 0,   y: 0,   rotate: 0,    duration: speed * 0.08 },
+      { x: 0,   y: 0,   rotate: 0,    duration: speed * 0.2 },
+    ],
+    repeat: -1,
+    ease: 'power4.out',
+  }),
+};
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,9 +66,8 @@ const Hero = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const badgesRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const droneRef = useRef<HTMLDivElement>(null);
-  const drone2Ref = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const dronesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -36,7 +87,6 @@ const Hero = () => {
         }, 0.2);
       }
 
-      // fade up subtitle
       if (subtitleRef.current) {
         gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
         tl.to(subtitleRef.current, {
@@ -46,7 +96,6 @@ const Hero = () => {
         }, 0.6);
       }
 
-      // scale
       if (ctaRef.current) {
         gsap.set(ctaRef.current, { opacity: 0, y: 20, scale: 0.95 });
         tl.to(ctaRef.current, {
@@ -57,7 +106,6 @@ const Hero = () => {
         }, 0.9);
       }
 
-      // fade badges in
       if (badgesRef.current) {
         gsap.set(badgesRef.current, { opacity: 0 });
         tl.to(badgesRef.current, {
@@ -66,25 +114,81 @@ const Hero = () => {
         }, 1.1);
       }
 
-      // Image reveal
-      if (imageRef.current) {
-        gsap.set(imageRef.current, { opacity: 0, y: 60, scale: 0.97 });
-        tl.to(imageRef.current, {
+      // Grid revealing
+      if (gridRef.current) {
+        gsap.set(gridRef.current, { opacity: 0 });
+        tl.to(gridRef.current, {
           opacity: 1,
+          duration: 1.2,
+        }, 0.3);
+      }
+
+      // Drone fleeting animations
+      dronesRef.current.forEach((el, i) => {
+        if (!el) return;
+        const config = drones[i];
+        const droneImg = el.querySelector('.drone-icon') as HTMLElement;
+
+        gsap.set(el, {
+          opacity: 0,
+          x: config.entryFrom.x,
+          y: config.entryFrom.y,
+          scale: 0.3,
+        });
+
+        // Staggered deploy
+        tl.to(el, {
+          opacity: config.opacity,
+          x: 0,
           y: 0,
           scale: 1,
-          duration: 0.9,
-        }, 0.5);
+          duration: 1.6,
+          ease: 'power2.out',
+        }, 0.4 + config.delay * 2);
 
-        // Parallax on scroll
-        gsap.to(imageRef.current, {
-          yPercent: 8,
+        tl.fromTo(el, {
+          filter: 'brightness(2)',
+        }, {
+          filter: 'brightness(1)',
+          duration: 0.8,
+          ease: 'power2.in',
+        }, 0.6 + config.delay * 2);
+
+        const pathConfig = patrolPaths[config.patrol](config.speed);
+        gsap.to(el, {
+          ...pathConfig,
+          delay: 2.5 + config.delay,
+        });
+
+        if (droneImg) {
+          gsap.to(droneImg, {
+            y: -0.3,
+            duration: 0.04,
+            repeat: -1,
+            yoyo: true,
+            ease: 'none',
+            delay: 2 + config.delay,
+          });
+        }
+      });
+
+      // Radar sweep line across the grid continuously
+      const radarLine = sectionRef.current?.querySelector('.radar-sweep');
+      if (radarLine) {
+        gsap.set(radarLine, { opacity: 0, left: '50%' });
+        gsap.to(radarLine, {
+          opacity: 0.15,
+          duration: 0.5,
+          delay: 2,
+        });
+        gsap.to(radarLine, {
+          left: '110%',
+          duration: 6,
+          repeat: -1,
           ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
+          delay: 2,
+          onRepeat: function() {
+            gsap.set(radarLine, { left: '50%' });
           },
         });
       }
@@ -104,65 +208,9 @@ const Hero = () => {
         });
       }
 
-      // Drone SVG animations — float in from edges, gentle hover
-      if (droneRef.current) {
-        gsap.set(droneRef.current, { opacity: 0, x: 80, y: 20, rotate: -8 });
-        tl.to(droneRef.current, {
-          opacity: 0.07,
-          x: 0,
-          y: 0,
-          rotate: 0,
-          duration: 1.4,
-        }, 0.8);
-
-        // Continuous gentle float
-        gsap.to(droneRef.current, {
-          y: -12,
-          x: 5,
-          rotate: 2,
-          duration: 4,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: 2,
-        });
-
-        // Parallax on scroll
-        gsap.to(droneRef.current, {
-          yPercent: -30,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
-
-      if (drone2Ref.current) {
-        gsap.set(drone2Ref.current, { opacity: 0, x: -60, y: 30, rotate: 5 });
-        tl.to(drone2Ref.current, {
-          opacity: 0.05,
-          x: 0,
-          y: 0,
-          rotate: 0,
-          duration: 1.4,
-        }, 1.0);
-
-        gsap.to(drone2Ref.current, {
-          y: 10,
-          x: -8,
-          rotate: -3,
-          duration: 5,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          delay: 3,
-        });
-
-        gsap.to(drone2Ref.current, {
-          yPercent: -20,
+      if (gridRef.current) {
+        gsap.to(gridRef.current, {
+          yPercent: 8,
           ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -185,69 +233,98 @@ const Hero = () => {
     ));
 
   return (
-    <section ref={sectionRef} className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-background overflow-hidden">
-      {/* Decorative drone SVGs — GSAP animated */}
-      <div ref={droneRef} className="absolute top-24 right-[5%] w-[280px] lg:w-[380px] pointer-events-none select-none">
-        <img src="/images/drone_black.svg" alt="" aria-hidden="true" className="w-full dark:hidden" />
-        <img src="/images/drone_white.svg" alt="" aria-hidden="true" className="w-full hidden dark:block" />
-      </div>
-      <div ref={drone2Ref} className="absolute bottom-32 left-[2%] w-[180px] lg:w-[240px] pointer-events-none select-none">
-        <img src="/images/drone_black.svg" alt="" aria-hidden="true" className="w-full dark:hidden" />
-        <img src="/images/drone_white.svg" alt="" aria-hidden="true" className="w-full hidden dark:block" />
+    <section ref={sectionRef} className="relative min-h-screen flex items-center bg-background overflow-hidden">
+      <div
+        ref={gridRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 20%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,1) 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 20%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,1) 100%)',
+        }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+              linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px',
+          }}
+        />
+
+        <div
+          className="radar-sweep absolute top-0 bottom-0 w-px pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, hsl(var(--primary) / 0.4) 30%, hsl(var(--primary) / 0.6) 50%, hsl(var(--primary) / 0.4) 70%, transparent)',
+            boxShadow: '0 0 20px 4px hsl(var(--primary) / 0.15), 0 0 60px 8px hsl(var(--primary) / 0.05)',
+          }}
+        />
+
+        {drones.map((drone, i) => (
+          <div
+            key={i}
+            ref={el => { dronesRef.current[i] = el; }}
+            className="absolute pointer-events-none select-none"
+            style={{
+              top: drone.top,
+              left: drone.left,
+              width: drone.size,
+              height: drone.size,
+            }}
+          >
+            <img
+              src="/images/drone_white.svg"
+              alt=""
+              aria-hidden="true"
+              className="drone-icon w-full h-full"
+            />
+          </div>
+        ))}
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="hero-content max-w-3xl mx-auto text-center mb-14">
-          <h1 ref={headingRef} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-foreground leading-[1.08] tracking-tight mb-6">
-            {headingWords("Infrastructure for")}
-            <span className="text-primary">
-              {headingWords("autonomous systems")}
+      <div className="container mx-auto px-6 relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-28">
+        <div className="hero-content max-w-2xl">
+          <h1 ref={headingRef} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading text-foreground leading-[1.08] tracking-tight mb-6">
+            <span className="font-bold">
+              {headingWords("Resilient Infrastructure")}
+            </span>
+            <br />
+            <span className="font-normal">
+              {headingWords("for autonomous systems")}
             </span>
           </h1>
 
-          <p ref={subtitleRef} className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-            Engineering teams use Zequent to deploy autonomous systems faster, operate them safely, and scale them without rewriting their stack.<br className="hidden sm:block" />
-            Think Kubernetes, but for autonomous systems running in the real world.
+          <p ref={subtitleRef} className="text-base sm:text-lg text-muted-foreground max-w-xl mb-10 leading-relaxed">
+            Intuitive infrastructure to deploy autonomous systems in mission-critical production. Think Kubernetes for autonomy.
           </p>
 
-          <div ref={ctaRef}>
-            <Link href="/docs/sdk/setup" className="inline-block group">
-              <div className="relative p-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 dark:from-primary/30 dark:via-primary/20 dark:to-primary/30">
-                <div className="absolute -inset-2 bg-primary/0 group-hover:bg-primary/10 dark:group-hover:bg-primary/20 blur-xl transition-all duration-500" />
-                <div className="relative px-10 py-4 bg-background hover:bg-muted/50 dark:hover:bg-muted/30 border-2 border-primary/50 dark:border-primary/60 group-hover:border-primary dark:group-hover:border-primary transition-all duration-300 overflow-hidden">
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/20 dark:via-primary/30 to-transparent" />
-                  <div className="relative flex items-center gap-3 text-lg font-semibold text-foreground">
-                    <span>Get Started</span>
-                    <img
-                      src="/images/button_arrow_tomato.svg"
-                      alt=""
-                      className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-                    />
-                  </div>
-                </div>
-              </div>
+          <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/docs/sdk/setup"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors duration-200"
+            >
+              <span>Start for free</span>
+              <img
+                src="/images/button_arrow_white.svg"
+                alt=""
+                className="w-4 h-4"
+              />
             </Link>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-muted/50 border border-border text-sm font-semibold text-foreground hover:bg-muted transition-colors duration-200"
+            >
+              Get in touch
+            </a>
           </div>
 
-          <div ref={badgesRef} className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground/60">
-            <span>EU Cloud & On-Premise</span>
-            <span>•</span>
+          <div ref={badgesRef} className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground/60">
+            <span>EU Cloud &amp; On-Premise</span>
+            <span>&bull;</span>
             <span>GDPR Compliant</span>
-            <span>•</span>
+            <span>&bull;</span>
             <span>Open Source</span>
-          </div>
-        </div>
-
-        <div ref={imageRef} className="max-w-5xl mx-auto">
-          <div className="relative overflow-hidden border border-border shadow-2xl shadow-primary/5 aspect-[16/9]">
-            <Image
-              src="/images/counter-intrusion.jpg"
-              alt="Autonomous systems in night operations"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
           </div>
         </div>
       </div>

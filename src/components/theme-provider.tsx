@@ -30,8 +30,8 @@ function ThemeWatcher() {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
-    <NextThemesProvider attribute="class" disableTransitionOnChange>
-      <ThemeWatcher />
+    <NextThemesProvider attribute="class" defaultTheme="dark" forcedTheme="dark" disableTransitionOnChange>
+      {/* <ThemeWatcher />  disabled temporarily */}
       {children}
     </NextThemesProvider>
   );
