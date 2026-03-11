@@ -186,7 +186,7 @@ export default function PrivacyPage() {
 
           <section className="mb-8">
             <h2 className="text-2xl font-heading font-bold text-foreground mb-4">
-              9. Open Source and On-Premise Deployments
+              9. Open Platform and On-Premise Deployments
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               If you use Zequent in an on-premise or self-hosted environment, this Privacy Policy applies only to your use of our documentation website and any cloud services you choose to integrate. Data processing within your on-premise deployment is under your control and responsibility.

@@ -305,7 +305,7 @@ const Hero = () => {
             <span>&bull;</span>
             <span>GDPR Compliant</span>
             <span>&bull;</span>
-            <span>Open Source</span>
+            <span>Open Platform</span>
           </div>
         </div>
       </div>
