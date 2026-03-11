@@ -8,57 +8,40 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 // Drone fleet anim
-type PatrolType = 'sweep' | 'orbit' | 'figure8';
-const drones: { top: string; left: string; size: number; opacity: number; delay: number; entryFrom: { x: number; y: number }; patrol: PatrolType; speed: number }[] = [
-  { top: '5%',  left: '78%', size: 30, opacity: 0.3, delay: 0.0, entryFrom: { x: 200,  y: -100 }, patrol: 'sweep',   speed: 5 },
-  { top: '14%', left: '92%', size: 34, opacity: 0.45, delay: 0.15, entryFrom: { x: 250,  y: -60 }, patrol: 'sweep',   speed: 4.5 },
-  { top: '26%', left: '66%', size: 40, opacity: 0.15, delay: 0.3, entryFrom: { x: -120, y: 80 },  patrol: 'orbit',   speed: 7 },
-  { top: '30%', left: '86%', size: 44, opacity: 0.5,  delay: 0.1, entryFrom: { x: 180,  y: -40 }, patrol: 'orbit',   speed: 6 },
-  { top: '44%', left: '74%', size: 52, opacity: 0.35, delay: 0.2, entryFrom: { x: 160,  y: 60 },  patrol: 'figure8', speed: 8 },
-  { top: '48%', left: '92%', size: 48, opacity: 0.55, delay: 0.05, entryFrom: { x: 220,  y: 20 },  patrol: 'figure8', speed: 7.5 },
-  { top: '62%', left: '68%', size: 36, opacity: 0.12, delay: 0.45, entryFrom: { x: -100, y: 120 }, patrol: 'sweep',   speed: 6.5 },
-  { top: '66%', left: '88%', size: 42, opacity: 0.4,  delay: 0.1, entryFrom: { x: 200,  y: 80 },  patrol: 'orbit',   speed: 5.5 },
-  { top: '80%', left: '78%', size: 38, opacity: 0.25, delay: 0.35, entryFrom: { x: 140,  y: 140 }, patrol: 'orbit',   speed: 9 },
-  { top: '82%', left: '94%', size: 46, opacity: 0.5,  delay: 0.0, entryFrom: { x: 260,  y: 100 }, patrol: 'figure8', speed: 8 },
-];
+const CELL = 80;
+type DroneColor = 'coral' | 'amber' | 'muted';
 
-// Patrol behavior anims with gasp
-const patrolPaths = {
-  sweep: (speed: number) => ({
-    keyframes: [
-      { x: 3,  y: -1,  rotate: -0.5, duration: speed * 0.3 },
-      { x: -2, y: 2,   rotate: 0.8,  duration: speed * 0.4 },
-      { x: 1,  y: -2,  rotate: -0.3, duration: speed * 0.3 },
-      { x: 0,  y: 0,   rotate: 0,    duration: speed * 0.3 },
-    ],
-    repeat: -1,
-    ease: 'power2.inOut',
-  }),
-  orbit: (speed: number) => ({
-    keyframes: [
-      { x: 8,   y: 0,   rotate: -1.5, duration: speed * 0.35 },
-      { x: 8,   y: 0,   rotate: -1.5, duration: speed * 0.15 },
-      { x: -4,  y: 3,   rotate: 1,    duration: speed * 0.35 },
-      { x: -4,  y: 3,   rotate: 1,    duration: speed * 0.1 },
-      { x: 0,   y: 0,   rotate: 0,    duration: speed * 0.25 },
-    ],
-    repeat: -1,
-    ease: 'power3.inOut',
-  }),
-  figure8: (speed: number) => ({
-    keyframes: [
-      { x: 12,  y: -6,  rotate: -2,   duration: speed * 0.08 },
-      { x: 12,  y: -6,  rotate: -1.5, duration: speed * 0.35 }, 
-      { x: 12,  y: -6,  rotate: -1.8, duration: speed * 0.05 },
-      { x: -5,  y: 4,   rotate: 1,    duration: speed * 0.08 },
-      { x: -5,  y: 4,   rotate: 0.5,  duration: speed * 0.3 },
-      { x: 0,   y: 0,   rotate: 0,    duration: speed * 0.08 },
-      { x: 0,   y: 0,   rotate: 0,    duration: speed * 0.2 },
-    ],
-    repeat: -1,
-    ease: 'power4.out',
-  }),
+const droneColors: Record<DroneColor, { border: string; fill: string; bg: string }> = {
+  coral: { border: 'rgba(255, 96, 68, 0.7)',  fill: '#FF6044', bg: 'rgba(255, 96, 68, 0.08)' },
+  amber: { border: 'rgba(230, 195, 50, 0.7)', fill: '#E6C332', bg: 'rgba(230, 195, 50, 0.08)' },
+  muted: { border: 'rgba(180, 180, 180, 0.35)', fill: '#B4B4B4', bg: 'rgba(180, 180, 180, 0.04)' },
 };
+
+interface GridDrone {
+  col: number;
+  row: number;
+  color: DroneColor;
+  moves?: [number, number][];
+  holdTime?: number;
+}
+
+const gridDrones: GridDrone[] = [
+  // Forward
+  { col: 3, row: 0,  color: 'coral' },
+  // Left
+  { col: 6, row: 2,  color: 'amber', moves: [[5, 1], [6, 2]], holdTime: 5 },
+  // Center recon
+  { col: 3, row: 3,  color: 'amber', moves: [[2, 2], [3, 3]], holdTime: 4 },
+  // Right assault
+  { col: 0, row: 2,  color: 'coral', moves: [[1, 3], [0, 4], [0, 2]], holdTime: 3.5 },
+  { col: 5, row: 5,  color: 'muted' },
+  // Center
+  { col: 2, row: 5,  color: 'muted', moves: [[1, 4], [2, 5]], holdTime: 6 },
+  { col: 0, row: 6,  color: 'amber', moves: [[1, 7], [0, 6]], holdTime: 4.5 },
+  { col: 4, row: 7,  color: 'muted' },
+  { col: 2, row: 9,  color: 'coral', moves: [[3, 8], [2, 9]], holdTime: 5 },
+  { col: 1, row: 10, color: 'coral' },
+];
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -126,48 +109,26 @@ const Hero = () => {
       // Drone fleeting animations
       dronesRef.current.forEach((el, i) => {
         if (!el) return;
-        const config = drones[i];
-        const droneImg = el.querySelector('.drone-icon') as HTMLElement;
-
-        gsap.set(el, {
-          opacity: 0,
-          x: config.entryFrom.x,
-          y: config.entryFrom.y,
-          scale: 0.3,
-        });
-
-        // Staggered deploy
+        const config = gridDrones[i];
+        gsap.set(el, { opacity: 0 });
         tl.to(el, {
-          opacity: config.opacity,
-          x: 0,
-          y: 0,
-          scale: 1,
-          duration: 1.6,
-          ease: 'power2.out',
-        }, 0.4 + config.delay * 2);
-
-        tl.fromTo(el, {
-          filter: 'brightness(2)',
-        }, {
-          filter: 'brightness(1)',
-          duration: 0.8,
+          opacity: 1,
+          duration: 0.12,
           ease: 'power2.in',
-        }, 0.6 + config.delay * 2);
+        }, 0.4 + i * 0.08);
 
-        const pathConfig = patrolPaths[config.patrol](config.speed);
-        gsap.to(el, {
-          ...pathConfig,
-          delay: 2.5 + config.delay,
-        });
+        if (config.moves && config.moves.length > 0) {
+          const hold = config.holdTime || 4;
+          const moveTl = gsap.timeline({ repeat: -1, delay: 1.5 + i * 0.2 });
 
-        if (droneImg) {
-          gsap.to(droneImg, {
-            y: -0.3,
-            duration: 0.04,
-            repeat: -1,
-            yoyo: true,
-            ease: 'none',
-            delay: 2 + config.delay,
+          config.moves.forEach(([targetCol, targetRow]) => {
+            moveTl.to({}, { duration: hold });
+            moveTl.to(el, {
+              x: (config.col - targetCol) * CELL,
+              y: (targetRow - config.row) * CELL,
+              duration: 0.3,
+              ease: 'power3.inOut',
+            });
           });
         }
       });
@@ -179,14 +140,14 @@ const Hero = () => {
         gsap.to(radarLine, {
           opacity: 0.15,
           duration: 0.5,
-          delay: 2,
+          delay: 0.8,
         });
         gsap.to(radarLine, {
           left: '110%',
           duration: 6,
           repeat: -1,
           ease: 'none',
-          delay: 2,
+          delay: 0.8,
           onRepeat: function() {
             gsap.set(radarLine, { left: '50%' });
           },
@@ -250,6 +211,7 @@ const Hero = () => {
               linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px)
             `,
             backgroundSize: '80px 80px',
+            backgroundPosition: 'right top',
           }}
         />
 
@@ -261,26 +223,45 @@ const Hero = () => {
           }}
         />
 
-        {drones.map((drone, i) => (
-          <div
-            key={i}
-            ref={el => { dronesRef.current[i] = el; }}
-            className="absolute pointer-events-none select-none"
-            style={{
-              top: drone.top,
-              left: drone.left,
-              width: drone.size,
-              height: drone.size,
-            }}
-          >
-            <img
-              src="/images/drone_white.svg"
-              alt=""
-              aria-hidden="true"
-              className="drone-icon w-full h-full"
-            />
-          </div>
-        ))}
+        {gridDrones.map((drone, i) => {
+          const colors = droneColors[drone.color];
+          return (
+            <div
+              key={i}
+              ref={el => { dronesRef.current[i] = el; }}
+              className="absolute pointer-events-none select-none"
+              style={{
+                top: drone.row * CELL,
+                right: drone.col * CELL,
+                width: CELL,
+                height: CELL,
+                border: `1px solid ${colors.border}`,
+                backgroundColor: colors.bg,
+              }}
+            >
+              <div
+                className="drone-icon absolute"
+                aria-hidden="true"
+                style={{
+                  width: CELL * 0.4,
+                  height: CELL * 0.4,
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  backgroundColor: colors.fill,
+                  maskImage: 'url(/images/drone_white.svg)',
+                  WebkitMaskImage: 'url(/images/drone_white.svg)',
+                  maskSize: 'contain',
+                  WebkitMaskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
 
       <div className="container mx-auto px-6 relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-28">
