@@ -9,30 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const images = [
   {
-    src: "/images/eu-autonomous-brain.jpg",
-    alt: "Autonomous systems intelligence",
-    label: "Defense & Security",
-    span: "",
-    aspect: "aspect-[16/10]",
-  },
-  {
     src: "/images/industrial-inspection.jpg",
     alt: "Autonomous industrial inspection",
-    label: "Industrial Inspection",
+    label: "Public Safety",
     span: "",
     aspect: "aspect-[16/10]",
   },
   {
-    src: "/images/drone-agriculture.jpg",
-    alt: "Agricultural drone in the field",
-    label: "Agriculture",
-    span: "",
-    aspect: "aspect-[16/10]",
-  },
-  {
-    src: "/images/drone-fleet.jpg",
-    alt: "Coordinated autonomous drone fleet",
-    label: "Fleet Operations",
+    src: "/images/eu-autonomous-brain.jpg",
+    alt: "Autonomous systems intelligence",
+    label: "Defense",
     span: "",
     aspect: "aspect-[16/10]",
   },
