@@ -79,8 +79,12 @@ const WhyZequent = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-primary text-white">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-primary text-white relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-grid-landing-white pointer-events-none"
+        aria-hidden="true"
+      />
+      <div className="container mx-auto px-6 relative z-10">
         <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block text-sm font-medium text-white/70 uppercase tracking-wider mb-4">
             Why Zequent

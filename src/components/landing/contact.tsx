@@ -89,6 +89,14 @@ const Contact = () => {
   return (
     <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background pointer-events-none" />
+      <div
+        className="absolute inset-0 bg-grid-landing pointer-events-none"
+        aria-hidden="true"
+        style={{
+          maskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 50%)',
+          WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 50%)',
+        }}
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">

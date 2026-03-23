@@ -94,8 +94,16 @@ const Features = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted/30">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted/30 relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-grid-landing pointer-events-none"
+        aria-hidden="true"
+        style={{
+          maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,0.5) 0%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,0.5) 0%, transparent 100%)',
+        }}
+      />
+      <div className="container mx-auto px-6 relative z-10">
         <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-4">
             Capabilities
