@@ -2,6 +2,7 @@
 
 import Header from "@/components/landing/header";
 import Hero from "@/components/landing/hero";
+import Partners from "@/components/landing/partners";
 import Problem from "@/components/landing/problem";
 import Solution from "@/components/landing/solution";
 import Features from "@/components/landing/features";
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Partners />
         <Problem />
         <section id="solution">
           <Solution />
