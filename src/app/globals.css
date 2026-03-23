@@ -138,6 +138,10 @@
     border-color: hsl(var(--border));
   }
 
+  * {
+    cursor: url('/images/drone_white_cursor.svg') 16 16, auto;
+  }
+
   body {
     background-color: hsl(var(--background));
   
