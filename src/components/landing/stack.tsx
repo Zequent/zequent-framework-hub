@@ -34,6 +34,8 @@ const Stack = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef    = useRef<HTMLDivElement>(null);
   const tickerRef  = useRef<HTMLDivElement>(null);
+  const trackRef   = useRef<HTMLDivElement>(null);
+  const marqueeTween = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -58,7 +60,32 @@ const Stack = () => {
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    // render 4 copiy of icons
+    const startMarquee = () => {
+      const track = trackRef.current;
+      if (!track) return;
+      const singleSetPx = track.scrollWidth / 4;
+      marqueeTween.current = gsap.to(track, {
+        x: -singleSetPx,
+        duration: 22,
+        ease: 'none',
+        repeat: -1,
+        modifiers: {
+          x: (x) => `${parseFloat(x) % singleSetPx}px`,
+        },
+      });
+    };
+
+    // Wait two frames so browser has computed layout
+    const raf1 = requestAnimationFrame(() => {
+      requestAnimationFrame(startMarquee);
+    });
+
+    return () => {
+      cancelAnimationFrame(raf1);
+      marqueeTween.current?.kill();
+      ctx.revert();
+    };
   }, []);
 
   const IconCell = ({ item, i }: { item: TechIcon; i: number }) => (
@@ -103,8 +130,9 @@ const Stack = () => {
         <div data-ticker-row className="relative overflow-hidden">
           <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-muted/20 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-muted/20 to-transparent z-10 pointer-events-none" />
-          <div className="ticker-scroll-left flex w-max">
-            {[...allIcons, ...allIcons].map((item, i) => <IconCell key={i} item={item} i={i} />)}
+          {/* 4 copies — GSAP moves by exactly 1 set width (scrollWidth/4), repeat: -1 */}
+          <div ref={trackRef} className="flex w-max">
+            {[...allIcons, ...allIcons, ...allIcons, ...allIcons].map((item, i) => <IconCell key={i} item={item} i={i} />)}
           </div>
         </div>
       </div>
