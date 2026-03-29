@@ -187,6 +187,31 @@
       linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 64px 64px;
   }
+
+  .bg-grid-coral {
+    background-image:
+      linear-gradient(to right, rgba(255, 96, 68, 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 96, 68, 0.18) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .ticker-scroll-left {
+    animation: ticker-left 28s linear infinite;
+  }
+
+  .ticker-scroll-right {
+    animation: ticker-right 32s linear infinite;
+  }
+
+  @keyframes ticker-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @keyframes ticker-right {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
 }
 
 @variant dark (&:where(.dark, .dark *));

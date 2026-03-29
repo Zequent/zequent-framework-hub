@@ -4,6 +4,7 @@ import Header from "@/components/landing/header";
 import Hero from "@/components/landing/hero";
 import Partners from "@/components/landing/partners";
 import Problem from "@/components/landing/problem";
+import Stack from "@/components/landing/stack";
 import Solution from "@/components/landing/solution";
 import Features from "@/components/landing/features";
 import Process from "@/components/landing/process";
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <Partners />
         <Problem />
+        <Stack />
         <section id="solution">
           <Solution />
         </section>
