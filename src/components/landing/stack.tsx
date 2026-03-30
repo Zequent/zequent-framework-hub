@@ -24,6 +24,7 @@ const allIcons: TechItem[] = [
   { kind: 'img', src: '/images/AWS.svg',         alt: 'AWS' },
   { kind: 'img', src: '/images/Azure.svg',       alt: 'Azure' },
   { kind: 'img', src: '/images/Redis.svg',       alt: 'Redis' },
+  { kind: 'img', src: '/images/GitHub.svg',      alt: 'GitHub' },
   { kind: 'lucide', Icon: (p) => <Cloud {...p} />,  color: '#FF6044' },
   { kind: 'lucide', Icon: (p) => <Server {...p} />, color: '#9CA3AF' },
 ];
