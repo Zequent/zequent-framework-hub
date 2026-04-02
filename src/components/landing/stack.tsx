@@ -25,6 +25,10 @@ const allIcons: TechItem[] = [
   { kind: 'img', src: '/images/Azure.svg',       alt: 'Azure' },
   { kind: 'img', src: '/images/Redis.svg',       alt: 'Redis' },
   { kind: 'img', src: '/images/GitHub.svg',      alt: 'GitHub' },
+  { kind: 'img', src: '/images/GitLab.svg',      alt: 'GitLab' },
+  { kind: 'img', src: '/images/Linux.svg',        alt: 'Linux' },
+  { kind: 'img', src: '/images/Raspberry Pi.svg', alt: 'Raspberry Pi' },
+  { kind: 'img', src: '/images/Windows 11.svg',   alt: 'Windows 11' },
   { kind: 'lucide', Icon: (p) => <Cloud {...p} />,  color: '#FF6044' },
   { kind: 'lucide', Icon: (p) => <Server {...p} />, color: '#9CA3AF' },
 ];
