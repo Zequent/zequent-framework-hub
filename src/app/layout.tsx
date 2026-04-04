@@ -20,8 +20,8 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Zequent – Autonomous Robotics Framework",
-  description: "Developer hub for the Zequent autonomous robotics framework by Zequent",
+  title: "Zequent – Infrastructure for Autonomous Systems",
+  description: "Developer hub for the Zequent autonomous systems infrastructure",
 
 };
 

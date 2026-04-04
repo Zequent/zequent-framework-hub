@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Zequent Documentation',
   },
   description:
-    'Documentation for the Zequent autonomous robotics framework.',
+    'Documentation for the Zequent autonomous systems infrastructure.',
 }
 
 export default async function DocsLayout({
