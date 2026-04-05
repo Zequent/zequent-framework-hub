@@ -5,7 +5,8 @@ import Hero from "@/components/landing/hero";
 import Partners from "@/components/landing/partners";
 import PlatformShowcase from "@/components/landing/platform-showcase";
 import Stack from "@/components/landing/stack";
-import Solution from "@/components/landing/solution";
+// import Solution from "@/components/landing/solution";
+import QuickSetup from "@/components/landing/quick-setup";
 import Features from "@/components/landing/features";
 import Process from "@/components/landing/process";
 import Showcase from "@/components/landing/showcase";
@@ -23,8 +24,11 @@ export default function Home() {
         <Partners />
         <PlatformShowcase />
         <Stack />
-        <section id="solution">
+        {/* <section id="solution">
           <Solution />
+        </section> */}
+        <section id="quick-setup">
+          <QuickSetup />
         </section>
         <section id="features">
           <Features />
