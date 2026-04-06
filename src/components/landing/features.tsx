@@ -3,39 +3,44 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Joystick, Activity, MapPin, Link2, Eye, Video } from "lucide-react";
 import TechFrame from './customtechframe';
+import RemoteControlIcon from './tech-icons/RemoteControlIcon';
+import TelemetryIcon from './tech-icons/TelemetryIcon';
+import MissionIcon from './tech-icons/MissionIcon';
+import StreamingIcon from './tech-icons/StreamingIcon';
+import AssetIcon from './tech-icons/AssetIcon';
+import DetectionIcon from './tech-icons/DetectionIcon';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const capabilities = [
   {
-    icon: Joystick,
+    icon: RemoteControlIcon,
     title: "Remote Control",
     description: "Direct command execution for flight control, gimbal positioning, and manual input. Low-latency command-response architecture ensures responsive operation regardless of distance.",
   },
   {
-    icon: Activity,
+    icon: TelemetryIcon,
     title: "Live Telemetry",
     description: "Persistent data streams for position, battery, signal, and custom sensor data. Push from the edge, subscribe from the application -- real-time visibility across your entire fleet.",
   },
   {
-    icon: MapPin,
+    icon: MissionIcon,
     title: "Mission Planning",
     description: "Define missions with tasks, waypoints, and scheduling. The platform handles execution order, state transitions, and progress tracking across concurrent operations.",
   },
   {
-    icon: Video,
+    icon: StreamingIcon,
     title: "Data Streaming",
     description: "Live video feeds from cameras and sensors on the edge. Multi-stream support, recording, and relay -- all routed through the platform with no direct device access required.",
   },
   {
-    icon: Link2,
+    icon: AssetIcon,
     title: "Asset Management",
     description: "Registry for all connected hardware -- drones, docks, vehicles, sensors. Manage organizations, capabilities, and metadata. The single source of truth for your deployment.",
   },
   {
-    icon: Eye,
+    icon: DetectionIcon,
     title: "Detection and AI",
     description: "Computer vision and inference pipelines at the edge or in the cloud. Object detection, tracking, and classification with pluggable model backends integrated into the data flow.",
   },
@@ -163,8 +168,8 @@ const Features = () => {
             >
               <TechFrame className="opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative">
-                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
-                  <cap.icon className="w-6 h-6 text-primary" />
+                <div className="w-14 h-14 mb-5 relative">
+                  <cap.icon className="w-full h-full text-foreground" />
                 </div>
                 <h3 className="text-lg font-heading font-semibold text-foreground mb-3">
                   {cap.title}
