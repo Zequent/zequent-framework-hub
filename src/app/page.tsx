@@ -39,7 +39,7 @@ export default function Home() {
         <section id="showcase">
           <Showcase />
         </section>
-        <Benefits />
+        {/* <Benefits /> */}
         <section id="repos">
           <Repos />
         </section>
