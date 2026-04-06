@@ -277,7 +277,7 @@ const Hero = () => {
           </h1>
 
           <p ref={subtitleRef} className="text-base sm:text-lg text-muted-foreground max-w-xl mb-10 leading-relaxed">
-            Intuitive infrastructure to deploy autonomous systems in mission-critical production. Think Kubernetes for autonomy.
+            Command and scale robotics fleets in production. One SDK, any hardware, deploy anywhere.
           </p>
 
           <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
