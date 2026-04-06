@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Joystick, Activity, MapPin, Link2, Eye, Video } from "lucide-react";
+import TechFrame from './customtechframe';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,27 +67,62 @@ const Features = () => {
         });
       }
 
-      // reveal w scaling
+      // Card frame appear anim
       if (gridRef.current) {
-        const cards = gridRef.current.children;
-        gsap.set(cards, { opacity: 0, y: 50, scale: 0.95 });
-        gsap.to(cards, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          stagger: {
-            each: 0.1,
-            grid: [2, 3],
-            from: 'start',
-          },
-          ease: 'power3.out',
+        const cards = gridRef.current.querySelectorAll('.feature-card');
+
+        const frameStrokes = gridRef.current.querySelectorAll(
+          '.frame-line, .frame-line-inner, .frame-line-accent'
+        );
+        frameStrokes.forEach((el) => {
+          const path = el as SVGPathElement;
+          const len = path.getTotalLength();
+          gsap.set(path, { attr: { 'stroke-dasharray': len, 'stroke-dashoffset': len } });
+        });
+
+        const edgesH = gridRef.current.querySelectorAll('.frame-edge-h');
+        const edgesV = gridRef.current.querySelectorAll('.frame-edge-v');
+
+        gsap.set(cards, { opacity: 0, y: 50 });
+        gsap.set(edgesH, { scaleX: 0 });
+        gsap.set(edgesV, { scaleY: 0 });
+
+        const frameTl = gsap.timeline({
           scrollTrigger: {
             trigger: gridRef.current,
             start: 'top 82%',
             once: true,
           },
         });
+
+        frameTl.to(cards, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: { each: 0.1, grid: [2, 3], from: 'start' },
+          ease: 'power3.out',
+        });
+
+        frameTl.to(frameStrokes, {
+          attr: { 'stroke-dashoffset': 0 },
+          duration: 0.6,
+          stagger: 0.03,
+          ease: 'power2.inOut',
+        }, '-=0.3');
+
+        frameTl.to(edgesH, {
+          scaleX: 1,
+          duration: 0.45,
+          stagger: 0.04,
+          ease: 'power2.out',
+        }, '-=0.3');
+
+        frameTl.to(edgesV, {
+          scaleY: 1,
+          duration: 0.45,
+          stagger: 0.04,
+          ease: 'power2.out',
+        }, '-=0.4');
       }
     }, sectionRef);
 
@@ -120,17 +156,23 @@ const Features = () => {
           {capabilities.map((cap) => (
             <div
               key={cap.title}
-              className="p-6 bg-card border border-border hover:border-primary/30 transition-colors group"
+              className="feature-card relative p-6 bg-card group"
+              style={{
+                clipPath: 'polygon(20px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 20px)',
+              }}
             >
-              <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
-                <cap.icon className="w-6 h-6 text-primary" />
+              <TechFrame className="opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+                  <cap.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-heading font-semibold text-foreground mb-3">
+                  {cap.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {cap.description}
+                </p>
               </div>
-              <h3 className="text-lg font-heading font-semibold text-foreground mb-3">
-                {cap.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {cap.description}
-              </p>
             </div>
           ))}
         </div>
