@@ -4,45 +4,33 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TechFrame from './customtechframe';
-import RemoteControlIcon from './tech-icons/RemoteControlIcon';
-import TelemetryIcon from './tech-icons/TelemetryIcon';
-import MissionIcon from './tech-icons/MissionIcon';
-import StreamingIcon from './tech-icons/StreamingIcon';
 import AssetIcon from './tech-icons/AssetIcon';
+import StreamingIcon from './tech-icons/StreamingIcon';
 import DetectionIcon from './tech-icons/DetectionIcon';
+import MissionIcon from './tech-icons/MissionIcon';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const capabilities = [
   {
-    icon: RemoteControlIcon,
-    title: "Remote Control",
-    description: "Direct command execution for flight control, gimbal positioning, and manual input. Low-latency command-response architecture ensures responsive operation regardless of distance.",
-  },
-  {
-    icon: TelemetryIcon,
-    title: "Live Telemetry",
-    description: "Persistent data streams for position, battery, signal, and custom sensor data. Push from the edge, subscribe from the application -- real-time visibility across your entire fleet.",
-  },
-  {
-    icon: MissionIcon,
-    title: "Mission Planning",
-    description: "Define missions with tasks, waypoints, and scheduling. The platform handles execution order, state transitions, and progress tracking across concurrent operations.",
+    icon: AssetIcon,
+    title: "Asset Integration",
+    description: "Onboard drones, docks, vehicles, and sensors into a unified registry. Manage capabilities, metadata, and connectivity from a single control plane.",
   },
   {
     icon: StreamingIcon,
-    title: "Data Streaming",
-    description: "Live video feeds from cameras and sensors on the edge. Multi-stream support, recording, and relay -- all routed through the platform with no direct device access required.",
-  },
-  {
-    icon: AssetIcon,
-    title: "Asset Management",
-    description: "Registry for all connected hardware -- drones, docks, vehicles, sensors. Manage organizations, capabilities, and metadata. The single source of truth for your deployment.",
+    title: "Data Streaming & Tasking",
+    description: "Push telemetry from the edge, stream live video, and dispatch tasks in real time. Bi-directional channels keep every asset responsive and observable.",
   },
   {
     icon: DetectionIcon,
-    title: "Detection and AI",
-    description: "Computer vision and inference pipelines at the edge or in the cloud. Object detection, tracking, and classification with pluggable model backends integrated into the data flow.",
+    title: "AI Inference & Learning",
+    description: "Run detection, classification, and tracking models at the edge or in the cloud. Pluggable pipelines feed results back into the platform's data flow.",
+  },
+  {
+    icon: MissionIcon,
+    title: "Interoperability",
+    description: "Connect across protocols, vendors, and deployment environments. Typed SDK interfaces and open APIs ensure every component speaks the same language.",
   },
 ];
 
@@ -104,7 +92,7 @@ const Features = () => {
           opacity: 1,
           y: 0,
           duration: 0.6,
-          stagger: { each: 0.1, grid: [2, 3], from: 'start' },
+          stagger: { each: 0.1, grid: [1, 4], from: 'start' },
           ease: 'power3.out',
         });
 
@@ -157,7 +145,7 @@ const Features = () => {
           </p>
         </div>
 
-        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {capabilities.map((cap) => (
             <div
               key={cap.title}
