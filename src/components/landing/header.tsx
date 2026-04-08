@@ -19,12 +19,23 @@ const Header = () => {
     );
   }, []);
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsOpen(false);
+    }
+  };
+
   const navLinks = [
-    { label: "Product", href: "#solution" },
+    { label: "Quick Setup", href: "#quick-setup" },
     { label: "Features", href: "#features" },
-    { label: "For Developers", href: "/docs" },
-    { label: "Showcase", href: "#showcase" },
     { label: "How It Works", href: "#how-it-works" },
+    { label: "Showcase", href: "#showcase" },
+    { label: "Open Source", href: "#repos" },
   ];
 
   return (
@@ -34,7 +45,7 @@ const Header = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-zequent-black border-b border-primary/60"
     >
       <div className="container px-6">
-        <div className="flex items-center justify-between h-12">
+        <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center">
             <img
               src="/images/Zequent_logo_black.svg"
@@ -53,7 +64,8 @@ const Header = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={(e) => handleAnchorClick(e, link.href)}
+                className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
               </a>
@@ -63,20 +75,15 @@ const Header = () => {
           <div className="hidden lg:flex items-center gap-5">
             <a
               href="#contact"
-              className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => handleAnchorClick(e, '#contact')}
+              className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
             >
               Contact
             </a>
-            <Link
-              href="/docs"
-              className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Sign in
-            </Link>
             {/* <ThemeToggle />  hidden for now */}
             <Link
               href="/docs/sdk/setup"
-              className="inline-flex items-center gap-2 px-4 py-1.5 border border-foreground text-xs font-semibold text-foreground hover:bg-foreground hover:text-background transition-all duration-200"
+              className="inline-flex items-center gap-2 px-4 py-1.5 border border-foreground text-sm font-semibold text-foreground hover:bg-foreground hover:text-background transition-all duration-200"
             >
               <span>Get started</span>
               <img
@@ -103,7 +110,7 @@ const Header = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleAnchorClick(e, link.href)}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {link.label}
@@ -111,18 +118,11 @@ const Header = () => {
               ))}
               <a
                 href="#contact"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleAnchorClick(e, '#contact')}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
               >
                 Contact
               </a>
-              <Link
-                href="/docs"
-                onClick={() => setIsOpen(false)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
-              >
-                Sign in
-              </Link>
               <div className="flex items-center gap-3 pt-4 border-t border-border">
                 {/* <ThemeToggle />  hidden for now */}
                 <Link
