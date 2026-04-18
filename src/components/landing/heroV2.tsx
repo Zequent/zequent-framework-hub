@@ -8,7 +8,8 @@ const ROTATING_WORDS = ['COMPUTING', 'CONNECTIVITY', 'CONTROL'];
 
 const HeroV2 = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoARef = useRef<HTMLVideoElement>(null);
+  const videoBRef = useRef<HTMLVideoElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -18,18 +19,52 @@ const HeroV2 = () => {
 
   // Background vid loop logic
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const videoA = videoARef.current;
+    const videoB = videoBRef.current;
+    if (!videoA || !videoB) return;
 
-    const handleTimeUpdate = () => {
-      if (video.duration && video.currentTime >= video.duration - 0.3) {
-        video.currentTime = 0;
-        video.play();
+    // dual video approach for getting perfect loop animation without any flashes or stutters during the loop point
+    const CROSSFADE = 0.8;
+    let active: HTMLVideoElement = videoA;
+    let standby: HTMLVideoElement = videoB;
+
+    standby.pause();
+    standby.currentTime = 0;
+    standby.style.opacity = '0';
+    active.style.opacity = '1';
+
+    let rafId: number;
+    let swapping = false;
+
+    const tick = () => {
+      if (active.duration && !swapping) {
+        const remaining = active.duration - active.currentTime;
+        if (remaining <= CROSSFADE) {
+          swapping = true;
+          standby.currentTime = 0;
+          standby.play();
+
+          gsap.to(standby, { opacity: 1, duration: CROSSFADE * 0.8, ease: 'none' });
+          gsap.to(active, {
+            opacity: 0,
+            duration: CROSSFADE * 0.8,
+            ease: 'none',
+            onComplete: () => {
+              const prev = active;
+              active = standby;
+              standby = prev;
+              standby.pause();
+              standby.currentTime = 0;
+              swapping = false;
+            },
+          });
+        }
       }
+      rafId = requestAnimationFrame(tick);
     };
 
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
   useEffect(() => {
@@ -124,12 +159,21 @@ const HeroV2 = () => {
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       <video
-        ref={videoRef}
+        ref={videoARef}
         autoPlay
         muted
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
+        src="/images/HeroVideo_Zequent_Landingpage.mp4"
+      />
+      <video
+        ref={videoBRef}
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0 }}
         src="/images/HeroVideo_Zequent_Landingpage.mp4"
       />
 
