@@ -33,8 +33,8 @@ const Header = () => {
   const navLinks = [
     { label: "Quick Setup", href: "#quick-setup" },
     { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Showcase", href: "#showcase" },
+    // { label: "How It Works", href: "#how-it-works" },
+    // { label: "Showcase", href: "#showcase" },
     { label: "Open Source", href: "#repos" },
   ];
 

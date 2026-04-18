@@ -33,12 +33,12 @@ export default function Home() {
         <section id="features">
           <Features />
         </section>
-        <section id="how-it-works">
+        {/* <section id="how-it-works">
           <Process />
-        </section>
-        <section id="showcase">
+        </section> */}
+        {/* <section id="showcase">
           <Showcase />
-        </section>
+        </section> */}
         {/* <Benefits /> */}
         <section id="repos">
           <Repos />
