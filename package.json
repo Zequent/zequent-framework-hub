@@ -82,6 +82,7 @@
     "sonner": "^1.7.4",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "tech-stack-icons": "^3.7.1",
     "unist-util-filter": "^5.0.1",
     "unist-util-visit": "^5.1.0",
     "vaul": "^0.9.9",

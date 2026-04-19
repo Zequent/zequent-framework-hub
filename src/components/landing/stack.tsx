@@ -3,37 +3,29 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Cloud, Server } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import StackIcon from 'tech-stack-icons';
 import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type SvgIconProps = { className?: string; style?: React.CSSProperties };
-
-type ImgIcon = { src: string; alt: string };
-type LucideIcon = { Icon: (props: SvgIconProps) => React.ReactNode; color: string };
-type TechItem = ({ kind: 'img' } & ImgIcon) | ({ kind: 'lucide' } & LucideIcon);
-
-const allIcons: TechItem[] = [
-  { kind: 'img', src: '/images/Python.svg',     alt: 'Python' },
-  { kind: 'img', src: '/images/Go.svg',          alt: 'Go' },
-  { kind: 'img', src: '/images/Docker.svg',      alt: 'Docker' },
-  { kind: 'img', src: '/images/Java.svg',        alt: 'Java' },
-  { kind: 'img', src: '/images/Kubernetes.svg',  alt: 'Kubernetes' },
-  { kind: 'img', src: '/images/AWS.svg',         alt: 'AWS' },
-  { kind: 'img', src: '/images/Azure.svg',       alt: 'Azure' },
-  { kind: 'img', src: '/images/Redis.svg',       alt: 'Redis' },
-  { kind: 'img', src: '/images/GitHub.svg',      alt: 'GitHub' },
-  { kind: 'img', src: '/images/GitLab.svg',      alt: 'GitLab' },
-  { kind: 'img', src: '/images/Linux.svg',        alt: 'Linux' },
-  { kind: 'img', src: '/images/Raspberry Pi.svg', alt: 'Raspberry Pi' },
-  { kind: 'img', src: '/images/Windows 11.svg',   alt: 'Windows 11' },
-  { kind: 'lucide', Icon: (p) => <Cloud {...p} />,  color: '#FF6044' },
-  { kind: 'lucide', Icon: (p) => <Server {...p} />, color: '#9CA3AF' },
-];
-
-type TechIcon = TechItem;
+const allIcons = [
+  { name: 'python',      label: 'Python',       variant: 'grayscale' },
+  { name: 'go',         label: 'Go',           variant: 'grayscale' },
+  { name: 'docker',     label: 'Docker',       variant: 'grayscale' },
+  { name: 'java',       label: 'Java',         variant: 'grayscale' },
+  { name: 'kubernetes', label: 'Kubernetes',   variant: 'grayscale' },
+  { name: 'aws',        label: 'AWS',          variant: 'grayscale' },
+  { name: 'azure',      label: 'Azure',        variant: 'grayscale' },
+  { name: 'redis',      label: 'Redis',        variant: 'grayscale' },
+  { name: 'github',     label: 'GitHub',       variant: 'dark' },
+  { name: 'gitlab',     label: 'GitLab',       variant: 'grayscale' },
+  { name: 'linux',      label: 'Linux',        variant: 'grayscale' },
+  { name: 'raspberrypi',label: 'Raspberry Pi', variant: 'grayscale' },
+  { name: 'windows11',  label: 'Windows 11',   variant: 'grayscale' },
+  { name: 'gcloud',     label: 'Google Cloud', variant: 'grayscale' },
+  { name: 'grafana',    label: 'Grafana',      variant: 'grayscale' },
+] as const;
 
 const Stack = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -93,16 +85,12 @@ const Stack = () => {
     };
   }, []);
 
-  const IconCell = ({ item, i }: { item: TechIcon; i: number }) => (
+  const IconCell = ({ item, i }: { item: typeof allIcons[number]; i: number }) => (
     <div
       key={i}
       className="flex items-center justify-center w-20 h-20 border border-border/50 bg-background/70 backdrop-blur-sm mx-4 shrink-0"
     >
-      {item.kind === 'img' ? (
-        <Image src={item.src} alt={item.alt} width={40} height={40} className="w-10 h-10 object-contain" />
-      ) : (
-        <item.Icon className="w-10 h-10" style={{ color: item.color }} />
-      )}
+      <StackIcon name={item.name} variant={item.variant} className="w-10 h-10" />
     </div>
   );
 
