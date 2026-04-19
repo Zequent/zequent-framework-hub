@@ -57,7 +57,7 @@ const DevelopShowcaseV2 = () => {
       <div className="container mx-auto px-6">
         <h2
           ref={headingRef}
-          className="font-soehne text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] tracking-tight max-w-4xl mb-20"
+          className="font-soehne text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-white leading-[1.1] tracking-tight max-w-4xl mb-20"
         >
           Rapidly develop and deploy
           <br />
@@ -84,7 +84,7 @@ const DevelopShowcaseV2 = () => {
               }}
             />
             <div className="relative p-12 lg:p-16">
-              <h3 className="font-soehne text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5">
+              <h3 className="font-soehne text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-5">
                 Develop faster
               </h3>
               <p className="font-soehne text-lg sm:text-xl text-white/50 leading-relaxed max-w-sm mb-8 line-clamp-3">
@@ -104,7 +104,7 @@ const DevelopShowcaseV2 = () => {
               data-panel="row2-left"
               className="p-12 lg:p-16 border-b border-white/10 lg:border-b-0 lg:border-r border-white/10"
             >
-              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-5">
                 Deploy in minutes
               </h3>
               <p className="font-soehne text-lg sm:text-xl text-white/50 leading-relaxed max-w-sm mb-8 line-clamp-3">
@@ -121,7 +121,7 @@ const DevelopShowcaseV2 = () => {
               data-panel="row2-right"
               className="p-12 lg:p-16"
             >
-              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-5">
                 Operate undeterred
               </h3>
               <p className="font-soehne text-lg sm:text-xl text-white/50 leading-relaxed max-w-sm mb-8 line-clamp-3">
@@ -141,7 +141,7 @@ const DevelopShowcaseV2 = () => {
               data-panel="row3-left"
               className="p-12 lg:p-16 border-b border-white/10 lg:border-b-0 lg:border-r border-white/10"
             >
-              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-5">
                 Lean teams, massive impact
               </h3>
               <p className="font-soehne text-lg sm:text-xl text-white/50 leading-relaxed max-w-sm mb-8 line-clamp-3">
@@ -158,7 +158,7 @@ const DevelopShowcaseV2 = () => {
               data-panel="row3-right"
               className="p-12 lg:p-16"
             >
-              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+              <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-5">
                 Own what you build
               </h3>
               <p className="font-soehne text-lg sm:text-xl text-white/50 leading-relaxed max-w-sm mb-8 line-clamp-3">

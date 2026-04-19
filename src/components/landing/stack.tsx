@@ -111,7 +111,7 @@ const Stack = () => {
           ref={textRef}
           className="relative shrink-0 flex items-center pl-6 lg:pl-16 pr-20 lg:pr-28 z-10"
         >
-          <h2 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight whitespace-nowrap">
+          <h2 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight whitespace-nowrap">
             Speak your stack.<br /> We handle the rest.
           </h2>
         </div>

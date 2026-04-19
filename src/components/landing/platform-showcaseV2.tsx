@@ -113,7 +113,7 @@ const PlatformShowcaseV2 = () => {
       <div className="container mx-auto px-6">
         <h2
           ref={headingRef}
-          className="font-soehne text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] tracking-tight max-w-4xl mb-20"
+          className="font-soehne text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-white leading-[1.1] tracking-tight max-w-4xl mb-20"
         >
           Operate degraded edge-to-cloud
           <br />
@@ -146,8 +146,20 @@ const PlatformShowcaseV2 = () => {
           className="border border-white/10"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="flex flex-col justify-center p-8 lg:p-12 border-b border-white/10 lg:border-b-0 lg:border-r border-white/10">
-              <p className="font-soehne text-3xl sm:text-4xl lg:text-5xl text-white/60 leading-snug">
+            <div className="relative flex flex-col justify-center p-8 lg:p-12 border-b border-white/10 lg:border-b-0 lg:border-r border-white/10 overflow-hidden">
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(to bottom, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.26) 6%, rgba(0,0,0,0.20) 11%, rgba(0,0,0,0.15) 16%, rgba(0,0,0,0.10) 21%, rgba(0,0,0,0.06) 27%, rgba(0,0,0,0.03) 33%, rgba(0,0,0,0.01) 40%, transparent 50%, rgba(0,0,0,0.01) 60%, rgba(0,0,0,0.03) 67%, rgba(0,0,0,0.06) 73%, rgba(0,0,0,0.10) 79%, rgba(0,0,0,0.15) 84%, rgba(0,0,0,0.20) 89%, rgba(0,0,0,0.26) 94%, rgba(0,0,0,0.32) 100%)',
+                }}
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(ellipse 90% 55% at 50% 50%, rgba(210,218,225,0.055) 0%, rgba(210,218,225,0.02) 50%, transparent 75%)',
+                }}
+              />
+              <p className="font-soehne text-3xl sm:text-4xl lg:text-5xl text-white/60 leading-snug relative font-light">
                 A distributed platform spanning data, control and execution planes,
                 abstracting hardware, networks, and protocols to enable
                 software-defined edge systems across tactical environments.
@@ -174,7 +186,7 @@ const PlatformShowcaseV2 = () => {
                 <div className="font-soehne text-sm uppercase tracking-widest text-primary mb-5">
                   Product
                 </div>
-                <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5">
+                <h3 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-light text-white mb-5">
                   Tactical Edge OS
                 </h3>
                 <p className="font-soehne text-lg sm:text-xl text-white/50 leading-relaxed mb-10">
@@ -206,7 +218,7 @@ const PlatformShowcaseV2 = () => {
                 <span>Solutions</span>
                 <span className="text-white/20">|</span>
               </div>
-              <h3 className="font-soehne text-xl sm:text-2xl lg:text-3xl font-semibold text-white">
+              <h3 className="font-soehne text-xl sm:text-2xl lg:text-3xl font-light text-white">
                 Defense &middot; Public Safety &middot; Critical Infrastructure
               </h3>
             </div>
