@@ -7,7 +7,7 @@ import PlatformShowcaseV2 from "@/components/landing/platform-showcaseV2";
 import DevelopShowcaseV2 from "@/components/landing/developShowcaseV2";
 import TestimonialsV2 from "@/components/landing/testimonialsV2";
 import Stack from "@/components/landing/stack";
-import QuickSetup from "@/components/landing/quick-setup";
+import QuickSetupV2 from "@/components/landing/quick-setupV2";
 import Features from "@/components/landing/features";
 import Repos from "@/components/landing/repos";
 import Contact from "@/components/landing/contact";
@@ -27,9 +27,7 @@ export default function Home() {
         {/* <section id="solution">
           <Solution />
         </section> */}
-        <section id="quick-setup">
-          <QuickSetup />
-        </section>
+        <QuickSetupV2 />
         <section id="features">
           <Features />
         </section>
