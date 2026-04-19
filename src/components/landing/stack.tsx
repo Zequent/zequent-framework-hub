@@ -3,9 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
 import StackIcon from 'tech-stack-icons';
-import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,16 +59,16 @@ const Stack = () => {
     const startMarquee = () => {
       const track = trackRef.current;
       if (!track) return;
-      const singleSetPx = track.scrollWidth / 4;
-      marqueeTween.current = gsap.to(track, {
-        x: -singleSetPx,
-        duration: 22,
-        ease: 'none',
-        repeat: -1,
-        modifiers: {
-          x: (x) => `${parseFloat(x) % singleSetPx}px`,
-        },
-      });
+      const singleSetPx = track.scrollWidth / 2;
+      marqueeTween.current = gsap.fromTo(track,
+        { x: 0 },
+        {
+          x: -singleSetPx,
+          duration: 22,
+          ease: 'none',
+          repeat: -1,
+        }
+      );
     };
 
     // Wait two frames so browser has computed layout
@@ -88,46 +86,51 @@ const Stack = () => {
   const IconCell = ({ item, i }: { item: typeof allIcons[number]; i: number }) => (
     <div
       key={i}
-      className="flex items-center justify-center w-20 h-20 border border-border/50 bg-background/70 backdrop-blur-sm mx-4 shrink-0"
+      className="flex items-center justify-center w-24 h-24 mx-3 shrink-0"
+      style={{ background: 'rgba(200, 50, 20, 0.45)' }}
     >
-      <StackIcon name={item.name} variant={item.variant} className="w-10 h-10" />
+      <StackIcon
+        name={item.name}
+        variant={item.variant}
+        className="w-12 h-12"
+        style={{ filter: 'brightness(1.8) contrast(1.1)' }}
+      />
     </div>
   );
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-muted/20 relative overflow-hidden">
-      <div
-        className="absolute inset-0 bg-grid-coral pointer-events-none"
-        aria-hidden="true"
-        style={{ maskImage: 'radial-gradient(ellipse 85% 65% at 50% 50%, black 20%, transparent 100%)' }}
-      />
+    <section
+      ref={sectionRef}
+      className="py-24 lg:py-32 relative overflow-hidden"
+      style={{ background: 'linear-gradient(105deg, #0A0A0A 0%, #0A0A0A 10%, #2a1210 22%, #5c2820 34%, #9e4030 46%, #d45840 58%, #f06248 68%, #FF6044 78%, #FF6044 100%)' }}
+    >
 
-      <div className="container mx-auto px-6 relative">
-        <div ref={textRef} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
-          <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight">
-              Speak your stack.<br className="hidden sm:block" /> We handle the rest.
-            </h2>
-          </div>
-          <Link
-            href="/docs"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors shrink-0"
-          >
-            View Docs
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+      <div className="flex items-center">
+
+        <div
+          ref={textRef}
+          className="relative shrink-0 flex items-center pl-6 lg:pl-16 pr-20 lg:pr-28 z-10"
+        >
+          <h2 className="font-soehne text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight whitespace-nowrap">
+            Speak your stack.<br /> We handle the rest.
+          </h2>
         </div>
-      </div>
 
-      <div ref={tickerRef}>
-        <div data-ticker-row className="relative overflow-hidden">
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-muted/20 to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-muted/20 to-transparent z-10 pointer-events-none" />
-          {/* 4 copies — GSAP moves by exactly 1 set width (scrollWidth/4), repeat: -1 */}
-          <div ref={trackRef} className="flex w-max">
-            {[...allIcons, ...allIcons, ...allIcons, ...allIcons].map((item, i) => <IconCell key={i} item={item} i={i} />)}
+        <div
+          ref={tickerRef}
+          className="flex-1 overflow-hidden relative"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent 0%, black 25%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%)',
+          }}
+        >
+          <div ref={trackRef} className="flex">
+            {[...allIcons, ...allIcons].map((item, i) => (
+              <IconCell key={i} item={item} i={i} />
+            ))}
           </div>
         </div>
+
       </div>
     </section>
   );
