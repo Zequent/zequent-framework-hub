@@ -4,6 +4,8 @@ import Header from "@/components/landing/header";
 import HeroV2 from "@/components/landing/heroV2";
 import Partners from "@/components/landing/partners";
 import PlatformShowcaseV2 from "@/components/landing/platform-showcaseV2";
+import DevelopShowcaseV2 from "@/components/landing/developShowcaseV2";
+import TestimonialsV2 from "@/components/landing/testimonialsV2";
 import Stack from "@/components/landing/stack";
 import QuickSetup from "@/components/landing/quick-setup";
 import Features from "@/components/landing/features";
@@ -19,6 +21,8 @@ export default function Home() {
         <HeroV2 />
         <Partners />
         <PlatformShowcaseV2 />
+        <DevelopShowcaseV2 />
+        <TestimonialsV2 />
         <Stack />
         {/* <section id="solution">
           <Solution />
