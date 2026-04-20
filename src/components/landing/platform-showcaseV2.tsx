@@ -108,6 +108,7 @@ const PlatformShowcaseV2 = () => {
   return (
     <section
       ref={sectionRef}
+      id="platform"
       className="relative bg-zequent-black py-24 lg:py-32 overflow-hidden"
     >
       <div className="container mx-auto px-6">

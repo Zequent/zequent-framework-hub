@@ -52,6 +52,7 @@ const DevelopShowcaseV2 = () => {
   return (
     <section
       ref={sectionRef}
+      id="develop"
       className="relative bg-zequent-black pb-24 lg:pb-32 overflow-hidden"
     >
       <div className="container mx-auto px-6">

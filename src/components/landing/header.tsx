@@ -31,11 +31,10 @@ const Header = () => {
   };
 
   const navLinks = [
-    { label: "Quick Setup", href: "#quick-setup" },
-    { label: "Features", href: "#features" },
-    // { label: "How It Works", href: "#how-it-works" },
-    // { label: "Showcase", href: "#showcase" },
-    { label: "Open Source", href: "#repos" },
+    { label: 'Platform', href: '#platform' },
+    { label: 'Develop', href: '#develop' },
+    { label: 'Quick Setup', href: '#quick-setup' },
+    { label: 'Features', href: '#features' },
   ];
 
   return (
