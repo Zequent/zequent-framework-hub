@@ -25,6 +25,17 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/**/*': ['./src/app/**/*.mdx'],
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/:path*',
+          has: [{ type: 'host', value: 'developer.zequent.com' }],
+          destination: '/docs/:path*',
+        },
+      ],
+    };
+  },
 }
 
 export default withSearch(withMDX(nextConfig))

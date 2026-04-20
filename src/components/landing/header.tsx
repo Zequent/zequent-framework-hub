@@ -72,13 +72,12 @@ const Header = () => {
           </nav>
 
           <div className="hidden lg:flex items-center gap-5">
-            <a
-              href="#contact"
-              onClick={(e) => handleAnchorClick(e, '#contact')}
+            <Link
+              href="/contact"
               className="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
             >
               Contact
-            </a>
+            </Link>
             {/* <ThemeToggle />  hidden for now */}
             <Link
               href="/docs/sdk/setup"
@@ -115,13 +114,12 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#contact"
-                onClick={(e) => handleAnchorClick(e, '#contact')}
+              <Link
+                href="/contact"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
               >
                 Contact
-              </a>
+              </Link>
               <div className="flex items-center gap-3 pt-4 border-t border-border">
                 {/* <ThemeToggle />  hidden for now */}
                 <Link

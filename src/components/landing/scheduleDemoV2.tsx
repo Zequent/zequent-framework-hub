@@ -66,7 +66,7 @@ const ScheduleDemoV2 = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#contact"
+                href="/contact"
                 className="relative inline-flex items-center gap-2 px-7 py-3 font-soehne text-sm font-medium uppercase tracking-widest overflow-hidden"
                 style={{
                   background: '#ffffff',

@@ -212,7 +212,7 @@ const HeroV2 = () => {
 
           <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
             <a
-              href="#contact"
+              href="/contact"
               className="relative font-soehne inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold uppercase tracking-wider overflow-hidden"
               style={{
                 background: '#8B3A2A',
