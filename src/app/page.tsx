@@ -8,7 +8,8 @@ import DevelopShowcaseV2 from "@/components/landing/developShowcaseV2";
 import TestimonialsV2 from "@/components/landing/testimonialsV2";
 import Stack from "@/components/landing/stack";
 import QuickSetupV2 from "@/components/landing/quick-setupV2";
-import Features from "@/components/landing/features";
+import FeaturesV2 from "@/components/landing/featuresV2";
+import ScheduleDemoV2 from "@/components/landing/scheduleDemoV2";
 import Repos from "@/components/landing/repos";
 import Contact from "@/components/landing/contact";
 import Footer from "@/components/landing/footer";
@@ -28,9 +29,8 @@ export default function Home() {
           <Solution />
         </section> */}
         <QuickSetupV2 />
-        <section id="features">
-          <Features />
-        </section>
+        <FeaturesV2 />
+        <ScheduleDemoV2 />
         {/* <section id="how-it-works">
           <Process />
         </section> */}
@@ -38,14 +38,14 @@ export default function Home() {
           <Showcase />
         </section> */}
         {/* <Benefits /> */}
-        <section id="repos">
+        {/* <section id="repos">
           <Repos />
         </section>
         <section id="contact">
           <Contact />
-        </section>
+        </section> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

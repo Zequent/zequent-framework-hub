@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
 
@@ -13,6 +13,7 @@ const HeroV2 = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const [demoHover, setDemoHover] = useState(false);
   const badgesRef = useRef<HTMLDivElement>(null);
   const typingRef = useRef<HTMLSpanElement>(null);
   const cursorRef = useRef<HTMLSpanElement>(null);
@@ -212,21 +213,34 @@ const HeroV2 = () => {
           <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              className="font-soehne inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-white text-sm font-semibold uppercase tracking-wider hover:bg-primary/90 transition-colors duration-200"
+              className="relative font-soehne inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold uppercase tracking-wider overflow-hidden"
+              style={{
+                background: '#8B3A2A',
+                color: demoHover ? '#8B3A2A' : '#ffffff',
+                transition: 'color 0.15s ease 0.18s',
+              }}
+              onMouseEnter={() => setDemoHover(true)}
+              onMouseLeave={() => setDemoHover(false)}
             >
-              <span>Schedule a demo</span>
-              <img
-                src="/images/button_arrow_white.svg"
-                alt=""
-                className="w-4 h-4"
+              <span
+                className="absolute inset-0"
+                style={{
+                  background: '#ffffff',
+                  transform: demoHover ? 'scaleX(1)' : 'scaleX(0)',
+                  transformOrigin: demoHover ? 'left' : 'right',
+                  transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                }}
               />
+              <span className="relative z-10 flex items-center gap-2">
+                Schedule a demo
+                <img
+                  src="/images/button_arrow_white.svg"
+                  alt=""
+                  className="w-4 h-4"
+                  style={{ filter: demoHover ? 'brightness(0) saturate(100%) invert(24%) sepia(54%) saturate(600%) hue-rotate(330deg)' : 'brightness(0) invert(1)' }}
+                />
+              </span>
             </a>
-            <Link
-              href="/docs/sdk/setup"
-              className="font-soehne inline-flex items-center gap-2 px-8 py-3.5 border border-white/30 text-sm font-semibold uppercase tracking-wider text-white hover:bg-white/10 transition-colors duration-200"
-            >
-              Start for free
-            </Link>
           </div>
 
           <div
