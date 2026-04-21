@@ -23,9 +23,10 @@ export default function ContactPage() {
     if (leftRef.current) {
       gsap.from(Array.from(leftRef.current.children), {
         opacity: 0,
-        y: 30,
-        duration: 0.8,
+        y: 24,
+        duration: 0.75,
         stagger: 0.1,
+        delay: 0.1,
         ease: 'power3.out',
       });
     }
@@ -93,12 +94,17 @@ export default function ContactPage() {
               Schedule a demo · Get in touch
             </p>
 
-            <h1 className="font-soehne text-4xl sm:text-5xl lg:text-5xl xl:text-[3.6rem] font-light text-white leading-[1.05] tracking-tight mb-10">
-              Let&apos;s build
-              <br />
-              something{' '}
-              <span style={{ color: '#FF6044' }}>real.</span>
-            </h1>
+            <div className="flex items-start gap-3 font-soehne text-4xl sm:text-5xl lg:text-5xl xl:text-[3.6rem] font-light text-white leading-[1.05] tracking-tight mb-10">
+              <img
+                src="/images/Zequent_favicon_white.svg"
+                alt=""
+                className="flex-shrink-0 w-[1.5em] mt-[0.05em]"
+              />
+              <div>
+                <div>Let&apos;s build</div>
+                <div>something <span style={{ color: '#FF6044' }}>real.</span></div>
+              </div>
+            </div>
 
             <div className="flex flex-col gap-4 mb-12">
               {BULLETS.map((text) => (
