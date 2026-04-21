@@ -186,10 +186,10 @@ const HeroV2 = () => {
             ref={headingRef}
             className="font-soehne font-bold text-white uppercase leading-[1.05] tracking-tight mb-6"
           >
-            <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
+            <span className="block font-medium text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
               TACTICAL
             </span>
-            <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl whitespace-nowrap">
+            <span className="block font-medium text-5xl sm:text-6xl lg:text-7xl xl:text-8xl whitespace-nowrap">
               EDGE{' '}
               <span
                 ref={typingRef}
