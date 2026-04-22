@@ -65,9 +65,9 @@ const Partners = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 border-b border-border/50">
+    <section ref={sectionRef} className="py-6 lg:py-8 border-b border-border/50">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center gap-12">
+          <div className="flex flex-col items-center gap-6">
           <p
             ref={labelRef}
             className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground/50"
@@ -83,20 +83,20 @@ const Partners = () => {
               <div key={logo.alt} className="flex items-center">
                 <div
                   data-logo
-                  className="flex items-center justify-center w-full py-6 px-4"
+                  className="flex items-center justify-center w-full py-2 px-4"
                 >
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     width={500}
                     height={500}
-                    className="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[300px] h-auto object-contain"
+                    className="w-full max-w-[180px] sm:max-w-[210px] lg:max-w-[240px] h-auto object-contain"
                   />
                 </div>
                 {i < logos.length - 1 && (
                   <div
                     data-divider
-                    className="hidden md:block w-px h-24 bg-border/50 origin-center shrink-0"
+                    className="hidden md:block w-px h-10 bg-border/50 origin-center shrink-0"
                   />
                 )}
               </div>
