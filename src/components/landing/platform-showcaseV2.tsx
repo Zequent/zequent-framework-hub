@@ -4,7 +4,6 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
-import TechFrame from '@/components/landing/customtechframe';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -212,8 +211,8 @@ const PlatformShowcaseV2 = () => {
             </div>
           </div>
 
-          <div className="border-t border-white/10 p-8 lg:p-12">
-            <div ref={solutionsRef} className="mb-10">
+          <div className="border-t border-white/10">
+            <div ref={solutionsRef} className="px-8 pt-8 lg:px-12 lg:pt-12 pb-8">
               <div className="font-soehne text-xs uppercase tracking-widest text-white/30 mb-4 flex items-center gap-2">
                 <span className="text-white/20">|</span>
                 <span>Solutions</span>
@@ -224,12 +223,13 @@ const PlatformShowcaseV2 = () => {
               </h3>
             </div>
 
+            <div className="h-px w-full bg-white/20" />
+
             <div
               ref={pillarsRef}
-              className="grid grid-cols-1 md:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-3 md:divide-x md:divide-white/10"
             >
               <div className="relative p-6 lg:p-8">
-                <TechFrame />
                 <h4 className="font-soehne text-3xl lg:text-4xl font-semibold text-white mb-3 relative">
                   {pillars[0].title}
                 </h4>
@@ -238,7 +238,6 @@ const PlatformShowcaseV2 = () => {
                 </p>
               </div>
               <div className="relative p-6 lg:p-8">
-                <TechFrame />
                 <h4 className="font-soehne text-3xl lg:text-4xl font-semibold text-white mb-3 relative">
                   Resilient<br />Edge Mesh
                 </h4>
@@ -247,7 +246,6 @@ const PlatformShowcaseV2 = () => {
                 </p>
               </div>
               <div className="relative p-6 lg:p-8">
-                <TechFrame />
                 <h4 className="font-soehne text-3xl lg:text-4xl font-semibold text-white mb-3 relative">
                   {pillars[2].title}
                 </h4>
