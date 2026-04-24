@@ -150,13 +150,15 @@ const PlatformShowcaseV2 = () => {
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(to bottom, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.26) 6%, rgba(0,0,0,0.20) 11%, rgba(0,0,0,0.15) 16%, rgba(0,0,0,0.10) 21%, rgba(0,0,0,0.06) 27%, rgba(0,0,0,0.03) 33%, rgba(0,0,0,0.01) 40%, transparent 50%, rgba(0,0,0,0.01) 60%, rgba(0,0,0,0.03) 67%, rgba(0,0,0,0.06) 73%, rgba(0,0,0,0.10) 79%, rgba(0,0,0,0.15) 84%, rgba(0,0,0,0.20) 89%, rgba(0,0,0,0.26) 94%, rgba(0,0,0,0.32) 100%)',
+                  background:
+                    'linear-gradient(to bottom, rgba(204, 214, 224, 0.20) 0%, rgba(186, 198, 210, 0.12) 14%, rgba(160, 174, 188, 0.06) 28%, rgba(132, 146, 162, 0.02) 42%, rgba(0, 0, 0, 0.02) 54%, rgba(0, 0, 0, 0.09) 66%, rgba(0, 0, 0, 0.17) 82%, rgba(0, 0, 0, 0.24) 100%)',
                 }}
               />
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(ellipse 90% 55% at 50% 50%, rgba(210,218,225,0.055) 0%, rgba(210,218,225,0.02) 50%, transparent 75%)',
+                  background:
+                    'radial-gradient(ellipse 90% 58% at 50% 10%, rgba(230, 238, 245, 0.10) 0%, rgba(205, 216, 226, 0.05) 36%, rgba(176, 189, 202, 0.02) 56%, transparent 72%)',
                 }}
               />
               <p className="font-soehne text-3xl sm:text-4xl lg:text-5xl text-white/60 leading-snug relative font-light">
