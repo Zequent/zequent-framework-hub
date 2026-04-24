@@ -87,13 +87,13 @@ const Stack = () => {
     <div
       key={i}
       className="flex items-center justify-center w-24 h-24 mx-3 shrink-0"
-      style={{ background: 'rgba(200, 50, 20, 0.45)' }}
+      style={{ background: 'rgba(200, 50, 20, 0.28)' }}
     >
       <StackIcon
         name={item.name}
         variant={item.variant}
         className="w-12 h-12"
-        style={{ filter: 'brightness(1.8) contrast(1.1)' }}
+        style={{ filter: 'brightness(1.45) contrast(1.08)' }}
       />
     </div>
   );
@@ -102,7 +102,7 @@ const Stack = () => {
     <section
       ref={sectionRef}
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ background: 'linear-gradient(105deg, #0A0A0A 0%, #0A0A0A 10%, #2a1210 22%, #5c2820 34%, #9e4030 46%, #d45840 58%, #f06248 68%, #FF6044 78%, #FF6044 100%)' }}
+      style={{ background: 'linear-gradient(105deg, #0A0A0A 0%, #0A0A0A 20%, #1b100f 34%, #3b1c18 50%, #663027 64%, #8a3b2d 76%, #b84b37 88%, #cf543d 100%)' }}
     >
 
       <div className="flex items-center">

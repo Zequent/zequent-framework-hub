@@ -199,7 +199,7 @@ const FeaturesV2 = () => {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 148% 122% at 0% 0%, #0A0A0A 0%, #0A0A0A 45%, rgba(10,10,10,0.92) 65%, rgba(10,10,10,0.56) 80%, transparent 95%), #FF4A28',
+            'radial-gradient(ellipse 148% 122% at 0% 0%, #0A0A0A 0%, #0A0A0A 45%, rgba(10,10,10,0.92) 65%, rgba(10,10,10,0.56) 80%, transparent 95%), rgba(255, 74, 40, 0.52)',
         }}
       />
 
