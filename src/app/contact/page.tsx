@@ -106,14 +106,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 mb-12">
+            {/*<div className="flex flex-col gap-4 mb-12">
               {BULLETS.map((text) => (
                 <div key={text} className="flex items-start gap-3">
                   <span className="mt-[7px] flex-shrink-0 w-1 h-1 rounded-full bg-primary opacity-60" />
                   <p className="font-soehne text-sm text-white/50 leading-relaxed">{text}</p>
                 </div>
               ))}
-            </div>
+            </div>*/}
 
             <a
               href="mailto:office@zequent.com"
