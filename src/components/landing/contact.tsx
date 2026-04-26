@@ -145,7 +145,6 @@ const Contact = () => {
                   );
                 })}
               </div>
-
             </div>
 
             <div ref={formRef} className="lg:col-span-8">

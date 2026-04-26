@@ -84,12 +84,12 @@ export default function ContactPage() {
       />
 
       <div className="relative min-h-screen flex flex-col lg:flex-row">
-        <div className="lg:w-[52%] flex flex-col px-10 py-10 lg:py-16 lg:px-16 lg:min-h-screen lg:justify-between">
+        <div className="lg:w-[52%] flex flex-col px-10 py-10 lg:py-16 lg:px-16 lg:min-h-screen">
           <Link href="/" className="inline-block">
             <img src="/images/Zequent_logo_white.svg" alt="Zequent" className="h-6 w-auto" />
           </Link>
 
-          <div ref={leftRef} className="mt-16 lg:mt-0 lg:mb-16 flex flex-col">
+          <div ref={leftRef} className="mt-16 lg:mt-0 flex flex-1 flex-col justify-center lg:-translate-y-12">
             <p className="font-soehne text-xs uppercase tracking-[0.22em] text-white/25 mb-8">
               Schedule a demo · Get in touch
             </p>
